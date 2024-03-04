@@ -9,3 +9,4 @@ Pod::Spec.new do |spec|
   spec.dependency 'Sentry'
   spec.dependency 'SwiftProtobuf', '~> 1.0'
   spec.ios.deployment_target = "11.0"
+end
