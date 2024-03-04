@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'nagacollegelib'
-  spec.version          = '0.0.2'
+  spec.version          = '0.0.1'
   spec.homepage         = 'https://github.com/haripacewisdom/nagacollegedemo.git'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
   spec.summary          = 'AkpodLib from WAIOZ'
