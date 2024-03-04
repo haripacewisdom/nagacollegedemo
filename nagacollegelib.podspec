@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   spec.version          = '0.0.3'
   spec.homepage         = 'https://github.com/haripacewisdom/nagacollegedemo.git'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
-  spec.summary          = 'AkpodLib from WAIOZ'
+  spec.summary          = 'nagacollegelib from WAIOZ'
   spec.source           = { :git => 'https://github.com/haripacewisdom/nagacollegedemo.git', :tag => spec.version.to_s }
   spec.vendored_frameworks = '**/*.xcframework'
   spec.dependency 'Sentry'
