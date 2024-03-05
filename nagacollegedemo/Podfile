@@ -4,7 +4,7 @@
 target 'nagacollegedemo' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+pod 'AkpodLib'
   # Pods for nagacollegedemo
 
 end
