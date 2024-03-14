@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name             = 'nagacollegelib'
-  spec.version          = '2.0.2'
-  spec.homepage         = 'https://example.com/nagacollegelib'
+  spec.version          = '2.0.3'
+  spec.homepage         = 'https://github.com/haripacewisdom/nagacollegedemo'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
   spec.summary          = 'nagacollegelib from WAIOZ'
   spec.source           = { :git => 'https://github.com/haripacewisdom/nagacollegedemo.git', :tag => spec.version.to_s }
