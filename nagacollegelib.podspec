@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'nagacollegelib'
-  spec.version          = '2.0.5'
+  spec.version          = '2.0.6'
   spec.homepage         = 'https://www.bureau.id/products/bureau-device-intelligence-behaviorial-biometrics'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
   spec.summary          = 'nagacollegelib from WAIOZ'
@@ -9,4 +9,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'Sentry', '8.21.0'
   spec.dependency 'SwiftProtobuf', '1.25.2'
   spec.ios.deployment_target = "11.0"
+  spec.readme = "https://raw.githubusercontent.com/capnslipp/NilCoalescingAssignmentOperators/#{spec.version.to_s}/README.md"
+
 end
