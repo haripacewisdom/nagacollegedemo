@@ -2,7 +2,7 @@
 
 Publishing first pod from NAGA
 
-## Table of Contents
+## NAGALIB of Contents
 
 - [Getting Started](#getting-started)
 - [Usage](#usage)
