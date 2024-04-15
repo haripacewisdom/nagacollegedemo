@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'nagacollegelib'
-  spec.version          = '2.0.9-alpha1'
+  spec.version          = '2.0.9-alpha2'
   spec.homepage         = 'https://www.bureau.id/products/bureau-device-intelligence-behaviorial-biometrics'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
   spec.summary          = 'nagacollegelib from WAIOZ'
