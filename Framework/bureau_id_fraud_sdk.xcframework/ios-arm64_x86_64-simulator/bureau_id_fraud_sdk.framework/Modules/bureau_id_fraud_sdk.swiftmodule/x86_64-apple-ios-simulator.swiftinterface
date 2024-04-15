@@ -1,0 +1,3952 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name bureau_id_fraud_sdk
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFoundation
+import AdSupport
+import AppTrackingTransparency
+import CallKit
+import SystemConfiguration.CaptiveNetwork
+import CommonCrypto
+import CoreGraphics
+import CoreLocation
+import CoreMotion
+import CryptoKit
+import Dispatch
+import Foundation
+import JavaScriptCore
+import LocalAuthentication
+import MachO
+import MessageUI
+import Network
+import Sentry
+import Swift
+import SwiftUI
+import SystemConfiguration
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol _ProtoNameProviding {
+  static var _protobuf_nameMap: bureau_id_fraud_sdk._NameMap { get }
+}
+public struct TextFormatDecodingOptions : Swift.Sendable {
+  public var messageDepthLimit: Swift.Int
+  public init()
+}
+public enum JSONDecodingError : Swift.Error {
+  case failure
+  case malformedNumber
+  case numberRange
+  case malformedMap
+  case malformedBool
+  case malformedString
+  case invalidUTF8
+  case missingFieldNames
+  case schemaMismatch
+  case unrecognizedEnumValue
+  case illegalNull
+  case unquotedMapKey
+  case leadingZero
+  case truncated
+  case malformedDuration
+  case malformedTimestamp
+  case malformedFieldMask
+  case trailingGarbage
+  case conflictingOneOf
+  case messageDepthLimit
+  case unknownField(Swift.String)
+}
+public protocol DeviceInfoProviding {
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(iOS 13.0, tvOS 13.0, *)
+  func getDeviceInfo() async -> bureau_id_fraud_sdk.DeviceInfo
+  #endif
+  func getDeviceInfo(_ completion: @escaping (bureau_id_fraud_sdk.DeviceInfo) -> Swift.Void)
+}
+@_hasMissingDesignatedInitializers public class DeviceInfoProvider {
+  convenience public init()
+  @objc deinit
+}
+extension bureau_id_fraud_sdk.DeviceInfoProvider : bureau_id_fraud_sdk.DeviceInfoProviding {
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(iOS 13.0, tvOS 13.0, *)
+  public func getDeviceInfo() async -> bureau_id_fraud_sdk.DeviceInfo
+  #endif
+  public func getDeviceInfo(_ completion: @escaping (bureau_id_fraud_sdk.DeviceInfo) -> Swift.Void)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class BureauAPI : ObjectiveC.NSObject {
+  public var delegate: UIKit.UIViewController?
+  public var fingerprintDelegate: (any bureau_id_fraud_sdk.PrismFingerPrintDelegate)?
+  @objc public static let shared: bureau_id_fraud_sdk.BureauAPI
+  public func configure(clientID: Swift.String, environment: bureau_id_fraud_sdk.Mode, sessionID: Swift.String, userId: Swift.String = "", flow: Swift.String = "", enableBehavioralBiometrics: Swift.Bool)
+  required public init(clientID: Swift.String, environment: bureau_id_fraud_sdk.Mode, sessionID: Swift.String, userId: Swift.String = "", flow: Swift.String = "", refVC: UIKit.UIViewController, enableBehavioralBiometrics: Swift.Bool)
+  public func startSubSession(_ subSessionID: Swift.String)
+  public func stopSubSession()
+  public func setUserID(_ userId: Swift.String)
+  public func setFlow(_ flow: Swift.String)
+  @objc public func submit()
+  @objc deinit
+}
+extension bureau_id_fraud_sdk.BureauAPI : CoreLocation.CLLocationManagerDelegate {
+  @objc dynamic public func locationManager(_ manager: CoreLocation.CLLocationManager, didUpdateLocations locations: [CoreLocation.CLLocation])
+  @objc dynamic public func locationManager(_ manager: CoreLocation.CLLocationManager, didChangeAuthorization status: CoreLocation.CLAuthorizationStatus)
+}
+public struct CredentialBuilder {
+}
+public enum Mode {
+  case sandbox
+  case production
+  case stage
+  public static func == (a: bureau_id_fraud_sdk.Mode, b: bureau_id_fraud_sdk.Mode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol PrismFingerPrintDelegate : ObjectiveC.NSObject {
+  func onFinished(data: [Swift.String : Any]?)
+}
+@_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class UserBehaviourCapture : UIKit.UIViewController, UIKit.UIScrollViewDelegate {
+  @_Concurrency.MainActor(unsafe) public var prismBehaviouralDelegate: (any bureau_id_fraud_sdk.PrismBehaviouralDelegate)?
+  @_Concurrency.MainActor(unsafe) public init(clientID: Swift.String, environment: bureau_id_fraud_sdk.Mode, sessionID: Swift.String, userId: Swift.String = "")
+  @_Concurrency.MainActor(unsafe) public func startSession(_ subSessionID: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func setUserID(_ userId: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func setFlow(_ flow: Swift.String)
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) public func stopSession() -> [Swift.String : Any]
+  @objc deinit
+}
+extension bureau_id_fraud_sdk.UserBehaviourCapture : UIKit.UITextFieldDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldShouldBeginEditing(_ textField: UIKit.UITextField) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+extension bureau_id_fraud_sdk.UserBehaviourCapture : UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldReceive touch: UIKit.UITouch) -> Swift.Bool
+}
+extension bureau_id_fraud_sdk.UserBehaviourCapture : Foundation.URLSessionWebSocketDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func urlSession(_ session: Foundation.URLSession, webSocketTask: Foundation.URLSessionWebSocketTask, didOpenWithProtocol protocol: Swift.String?)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func urlSession(_ session: Foundation.URLSession, webSocketTask: Foundation.URLSessionWebSocketTask, didCloseWith closeCode: Foundation.URLSessionWebSocketTask.CloseCode, reason: Foundation.Data?)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
+}
+public protocol PrismBehaviouralDelegate : ObjectiveC.NSObject {
+  func onSuccessCallBack(data: [Swift.String : Any]?)
+  func onFailureCallBack(data: [Swift.String : Any]?)
+  func onStopSessionCallBack(data: [Swift.String : Any]?)
+}
+public struct Google_Protobuf_Duration : Swift.Sendable {
+  public var seconds: Swift.Int64
+  public var nanos: Swift.Int32
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Duration : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Duration, rhs: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol ProtobufAPIVersion_3 {
+}
+public protocol ProtobufAPIVersionCheck {
+  associatedtype Version : bureau_id_fraud_sdk.ProtobufAPIVersion_3
+}
+public struct ExtensionFieldValueSet : Swift.Hashable, Swift.Sendable {
+  public static func == (lhs: bureau_id_fraud_sdk.ExtensionFieldValueSet, rhs: bureau_id_fraud_sdk.ExtensionFieldValueSet) -> Swift.Bool
+  public init()
+  public func hash(into hasher: inout Swift.Hasher)
+  public func traverse<V>(visitor: inout V, start: Swift.Int, end: Swift.Int) throws where V : bureau_id_fraud_sdk.Visitor
+  public subscript(index: Swift.Int) -> (any bureau_id_fraud_sdk.AnyExtensionField)? {
+    get
+    set
+  }
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum FingerprintJSVersion {
+  case v1
+  case v2
+  public static func == (a: bureau_id_fraud_sdk.FingerprintJSVersion, b: bureau_id_fraud_sdk.FingerprintJSVersion) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum FingerprintAlgorithm {
+  case sha256
+  public static func == (a: bureau_id_fraud_sdk.FingerprintAlgorithm, b: bureau_id_fraud_sdk.FingerprintAlgorithm) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Configuration {
+  public init(version: bureau_id_fraud_sdk.FingerprintJSVersion = .v2, algorithm: bureau_id_fraud_sdk.FingerprintAlgorithm = .sha256)
+}
+public struct Google_Protobuf_SourceContext : Swift.Sendable {
+  public var fileName: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_SourceContext : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_SourceContext, rhs: bureau_id_fraud_sdk.Google_Protobuf_SourceContext) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum Google_Protobuf_Edition : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case unknown
+  case proto2
+  case proto3
+  case edition2023
+  case edition2024
+  case edition1TestOnly
+  case edition2TestOnly
+  case edition99997TestOnly
+  case edition99998TestOnly
+  case edition99999TestOnly
+  case max
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_Edition]
+  public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_Edition] {
+    get
+  }
+}
+public struct Google_Protobuf_FileDescriptorSet : Swift.Sendable {
+  public var file: [bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorProto]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_FileDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var package: Swift.String {
+    get
+    set
+  }
+  public var hasPackage: Swift.Bool {
+    get
+  }
+  public mutating func clearPackage()
+  public var dependency: [Swift.String]
+  public var publicDependency: [Swift.Int32]
+  public var weakDependency: [Swift.Int32]
+  public var messageType: [bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto]
+  public var enumType: [bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto]
+  public var service: [bureau_id_fraud_sdk.Google_Protobuf_ServiceDescriptorProto]
+  public var `extension`: [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto]
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_FileOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var sourceCodeInfo: bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo {
+    get
+    set
+  }
+  public var hasSourceCodeInfo: Swift.Bool {
+    get
+  }
+  public mutating func clearSourceCodeInfo()
+  public var syntax: Swift.String {
+    get
+    set
+  }
+  public var hasSyntax: Swift.Bool {
+    get
+  }
+  public mutating func clearSyntax()
+  public var edition: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+    get
+    set
+  }
+  public var hasEdition: Swift.Bool {
+    get
+  }
+  public mutating func clearEdition()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_DescriptorProto : @unchecked Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var field: [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto] {
+    get
+    set
+  }
+  public var `extension`: [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto] {
+    get
+    set
+  }
+  public var nestedType: [bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto] {
+    get
+    set
+  }
+  public var enumType: [bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto] {
+    get
+    set
+  }
+  public var extensionRange: [bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ExtensionRange] {
+    get
+    set
+  }
+  public var oneofDecl: [bureau_id_fraud_sdk.Google_Protobuf_OneofDescriptorProto] {
+    get
+    set
+  }
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_MessageOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var reservedRange: [bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ReservedRange] {
+    get
+    set
+  }
+  public var reservedName: [Swift.String] {
+    get
+    set
+  }
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct ExtensionRange : Swift.Sendable {
+    public var start: Swift.Int32 {
+      get
+      set
+    }
+    public var hasStart: Swift.Bool {
+      get
+    }
+    public mutating func clearStart()
+    public var end: Swift.Int32 {
+      get
+      set
+    }
+    public var hasEnd: Swift.Bool {
+      get
+    }
+    public mutating func clearEnd()
+    public var options: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions {
+      get
+      set
+    }
+    public var hasOptions: Swift.Bool {
+      get
+    }
+    public mutating func clearOptions()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public struct ReservedRange : Swift.Sendable {
+    public var start: Swift.Int32 {
+      get
+      set
+    }
+    public var hasStart: Swift.Bool {
+      get
+    }
+    public mutating func clearStart()
+    public var end: Swift.Int32 {
+      get
+      set
+    }
+    public var hasEnd: Swift.Bool {
+      get
+    }
+    public mutating func clearEnd()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+}
+public struct Google_Protobuf_ExtensionRangeOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var declaration: [bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.Declaration]
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var verification: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.VerificationState {
+    get
+    set
+  }
+  public var hasVerification: Swift.Bool {
+    get
+  }
+  public mutating func clearVerification()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum VerificationState : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case declaration
+    case unverified
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.VerificationState]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.VerificationState] {
+      get
+    }
+  }
+  public struct Declaration : Swift.Sendable {
+    public var number: Swift.Int32 {
+      get
+      set
+    }
+    public var hasNumber: Swift.Bool {
+      get
+    }
+    public mutating func clearNumber()
+    public var fullName: Swift.String {
+      get
+      set
+    }
+    public var hasFullName: Swift.Bool {
+      get
+    }
+    public mutating func clearFullName()
+    public var type: Swift.String {
+      get
+      set
+    }
+    public var hasType: Swift.Bool {
+      get
+    }
+    public mutating func clearType()
+    public var reserved: Swift.Bool {
+      get
+      set
+    }
+    public var hasReserved: Swift.Bool {
+      get
+    }
+    public mutating func clearReserved()
+    public var repeated: Swift.Bool {
+      get
+      set
+    }
+    public var hasRepeated: Swift.Bool {
+      get
+    }
+    public mutating func clearRepeated()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_FieldDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var number: Swift.Int32 {
+    get
+    set
+  }
+  public var hasNumber: Swift.Bool {
+    get
+  }
+  public mutating func clearNumber()
+  public var label: bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.Label {
+    get
+    set
+  }
+  public var hasLabel: Swift.Bool {
+    get
+  }
+  public mutating func clearLabel()
+  public var type: bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.TypeEnum {
+    get
+    set
+  }
+  public var hasType: Swift.Bool {
+    get
+  }
+  public mutating func clearType()
+  public var typeName: Swift.String {
+    get
+    set
+  }
+  public var hasTypeName: Swift.Bool {
+    get
+  }
+  public mutating func clearTypeName()
+  public var extendee: Swift.String {
+    get
+    set
+  }
+  public var hasExtendee: Swift.Bool {
+    get
+  }
+  public mutating func clearExtendee()
+  public var defaultValue: Swift.String {
+    get
+    set
+  }
+  public var hasDefaultValue: Swift.Bool {
+    get
+  }
+  public mutating func clearDefaultValue()
+  public var oneofIndex: Swift.Int32 {
+    get
+    set
+  }
+  public var hasOneofIndex: Swift.Bool {
+    get
+  }
+  public mutating func clearOneofIndex()
+  public var jsonName: Swift.String {
+    get
+    set
+  }
+  public var hasJsonName: Swift.Bool {
+    get
+  }
+  public mutating func clearJsonName()
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var proto3Optional: Swift.Bool {
+    get
+    set
+  }
+  public var hasProto3Optional: Swift.Bool {
+    get
+  }
+  public mutating func clearProto3Optional()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum TypeEnum : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case double
+    case float
+    case int64
+    case uint64
+    case int32
+    case fixed64
+    case fixed32
+    case bool
+    case string
+    case group
+    case message
+    case bytes
+    case uint32
+    case `enum`
+    case sfixed32
+    case sfixed64
+    case sint32
+    case sint64
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.TypeEnum]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.TypeEnum] {
+      get
+    }
+  }
+  public enum Label : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case optional
+    case repeated
+    case required
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.Label]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.Label] {
+      get
+    }
+  }
+  public init()
+}
+public struct Google_Protobuf_OneofDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_OneofOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_EnumDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var value: [bureau_id_fraud_sdk.Google_Protobuf_EnumValueDescriptorProto]
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_EnumOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var reservedRange: [bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto.EnumReservedRange]
+  public var reservedName: [Swift.String]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct EnumReservedRange : Swift.Sendable {
+    public var start: Swift.Int32 {
+      get
+      set
+    }
+    public var hasStart: Swift.Bool {
+      get
+    }
+    public mutating func clearStart()
+    public var end: Swift.Int32 {
+      get
+      set
+    }
+    public var hasEnd: Swift.Bool {
+      get
+    }
+    public mutating func clearEnd()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+}
+public struct Google_Protobuf_EnumValueDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var number: Swift.Int32 {
+    get
+    set
+  }
+  public var hasNumber: Swift.Bool {
+    get
+  }
+  public mutating func clearNumber()
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_EnumValueOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_ServiceDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var method: [bureau_id_fraud_sdk.Google_Protobuf_MethodDescriptorProto]
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_ServiceOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_MethodDescriptorProto : Swift.Sendable {
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var hasName: Swift.Bool {
+    get
+  }
+  public mutating func clearName()
+  public var inputType: Swift.String {
+    get
+    set
+  }
+  public var hasInputType: Swift.Bool {
+    get
+  }
+  public mutating func clearInputType()
+  public var outputType: Swift.String {
+    get
+    set
+  }
+  public var hasOutputType: Swift.Bool {
+    get
+  }
+  public mutating func clearOutputType()
+  public var options: bureau_id_fraud_sdk.Google_Protobuf_MethodOptions {
+    get
+    set
+  }
+  public var hasOptions: Swift.Bool {
+    get
+  }
+  public mutating func clearOptions()
+  public var clientStreaming: Swift.Bool {
+    get
+    set
+  }
+  public var hasClientStreaming: Swift.Bool {
+    get
+  }
+  public mutating func clearClientStreaming()
+  public var serverStreaming: Swift.Bool {
+    get
+    set
+  }
+  public var hasServerStreaming: Swift.Bool {
+    get
+  }
+  public mutating func clearServerStreaming()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_FileOptions : bureau_id_fraud_sdk.ExtensibleMessage, @unchecked Swift.Sendable {
+  public var javaPackage: Swift.String {
+    get
+    set
+  }
+  public var hasJavaPackage: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaPackage()
+  public var javaOuterClassname: Swift.String {
+    get
+    set
+  }
+  public var hasJavaOuterClassname: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaOuterClassname()
+  public var javaMultipleFiles: Swift.Bool {
+    get
+    set
+  }
+  public var hasJavaMultipleFiles: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaMultipleFiles()
+  public var javaGenerateEqualsAndHash: Swift.Bool {
+    get
+    set
+  }
+  public var hasJavaGenerateEqualsAndHash: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaGenerateEqualsAndHash()
+  public var javaStringCheckUtf8: Swift.Bool {
+    get
+    set
+  }
+  public var hasJavaStringCheckUtf8: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaStringCheckUtf8()
+  public var optimizeFor: bureau_id_fraud_sdk.Google_Protobuf_FileOptions.OptimizeMode {
+    get
+    set
+  }
+  public var hasOptimizeFor: Swift.Bool {
+    get
+  }
+  public mutating func clearOptimizeFor()
+  public var goPackage: Swift.String {
+    get
+    set
+  }
+  public var hasGoPackage: Swift.Bool {
+    get
+  }
+  public mutating func clearGoPackage()
+  public var ccGenericServices: Swift.Bool {
+    get
+    set
+  }
+  public var hasCcGenericServices: Swift.Bool {
+    get
+  }
+  public mutating func clearCcGenericServices()
+  public var javaGenericServices: Swift.Bool {
+    get
+    set
+  }
+  public var hasJavaGenericServices: Swift.Bool {
+    get
+  }
+  public mutating func clearJavaGenericServices()
+  public var pyGenericServices: Swift.Bool {
+    get
+    set
+  }
+  public var hasPyGenericServices: Swift.Bool {
+    get
+  }
+  public mutating func clearPyGenericServices()
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var ccEnableArenas: Swift.Bool {
+    get
+    set
+  }
+  public var hasCcEnableArenas: Swift.Bool {
+    get
+  }
+  public mutating func clearCcEnableArenas()
+  public var objcClassPrefix: Swift.String {
+    get
+    set
+  }
+  public var hasObjcClassPrefix: Swift.Bool {
+    get
+  }
+  public mutating func clearObjcClassPrefix()
+  public var csharpNamespace: Swift.String {
+    get
+    set
+  }
+  public var hasCsharpNamespace: Swift.Bool {
+    get
+  }
+  public mutating func clearCsharpNamespace()
+  public var swiftPrefix: Swift.String {
+    get
+    set
+  }
+  public var hasSwiftPrefix: Swift.Bool {
+    get
+  }
+  public mutating func clearSwiftPrefix()
+  public var phpClassPrefix: Swift.String {
+    get
+    set
+  }
+  public var hasPhpClassPrefix: Swift.Bool {
+    get
+  }
+  public mutating func clearPhpClassPrefix()
+  public var phpNamespace: Swift.String {
+    get
+    set
+  }
+  public var hasPhpNamespace: Swift.Bool {
+    get
+  }
+  public mutating func clearPhpNamespace()
+  public var phpMetadataNamespace: Swift.String {
+    get
+    set
+  }
+  public var hasPhpMetadataNamespace: Swift.Bool {
+    get
+  }
+  public mutating func clearPhpMetadataNamespace()
+  public var rubyPackage: Swift.String {
+    get
+    set
+  }
+  public var hasRubyPackage: Swift.Bool {
+    get
+  }
+  public mutating func clearRubyPackage()
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption] {
+    get
+    set
+  }
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum OptimizeMode : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case speed
+    case codeSize
+    case liteRuntime
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FileOptions.OptimizeMode]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FileOptions.OptimizeMode] {
+      get
+    }
+  }
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_MessageOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var messageSetWireFormat: Swift.Bool {
+    get
+    set
+  }
+  public var hasMessageSetWireFormat: Swift.Bool {
+    get
+  }
+  public mutating func clearMessageSetWireFormat()
+  public var noStandardDescriptorAccessor: Swift.Bool {
+    get
+    set
+  }
+  public var hasNoStandardDescriptorAccessor: Swift.Bool {
+    get
+  }
+  public mutating func clearNoStandardDescriptorAccessor()
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var mapEntry: Swift.Bool {
+    get
+    set
+  }
+  public var hasMapEntry: Swift.Bool {
+    get
+  }
+  public mutating func clearMapEntry()
+  public var deprecatedLegacyJsonFieldConflicts: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecatedLegacyJsonFieldConflicts: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecatedLegacyJsonFieldConflicts()
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_FieldOptions : bureau_id_fraud_sdk.ExtensibleMessage, @unchecked Swift.Sendable {
+  public var ctype: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.CType {
+    get
+    set
+  }
+  public var hasCtype: Swift.Bool {
+    get
+  }
+  public mutating func clearCtype()
+  public var packed: Swift.Bool {
+    get
+    set
+  }
+  public var hasPacked: Swift.Bool {
+    get
+  }
+  public mutating func clearPacked()
+  public var jstype: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.JSType {
+    get
+    set
+  }
+  public var hasJstype: Swift.Bool {
+    get
+  }
+  public mutating func clearJstype()
+  public var lazy: Swift.Bool {
+    get
+    set
+  }
+  public var hasLazy: Swift.Bool {
+    get
+  }
+  public mutating func clearLazy()
+  public var unverifiedLazy: Swift.Bool {
+    get
+    set
+  }
+  public var hasUnverifiedLazy: Swift.Bool {
+    get
+  }
+  public mutating func clearUnverifiedLazy()
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var weak: Swift.Bool {
+    get
+    set
+  }
+  public var hasWeak: Swift.Bool {
+    get
+  }
+  public mutating func clearWeak()
+  public var debugRedact: Swift.Bool {
+    get
+    set
+  }
+  public var hasDebugRedact: Swift.Bool {
+    get
+  }
+  public mutating func clearDebugRedact()
+  public var retention: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionRetention {
+    get
+    set
+  }
+  public var hasRetention: Swift.Bool {
+    get
+  }
+  public mutating func clearRetention()
+  public var targets: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionTargetType] {
+    get
+    set
+  }
+  public var editionDefaults: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.EditionDefault] {
+    get
+    set
+  }
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var featureSupport: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.FeatureSupport {
+    get
+    set
+  }
+  public var hasFeatureSupport: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatureSupport()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption] {
+    get
+    set
+  }
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum CType : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case string
+    case cord
+    case stringPiece
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.CType]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.CType] {
+      get
+    }
+  }
+  public enum JSType : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case jsNormal
+    case jsString
+    case jsNumber
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.JSType]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.JSType] {
+      get
+    }
+  }
+  public enum OptionRetention : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case retentionUnknown
+    case retentionRuntime
+    case retentionSource
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionRetention]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionRetention] {
+      get
+    }
+  }
+  public enum OptionTargetType : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case targetTypeUnknown
+    case targetTypeFile
+    case targetTypeExtensionRange
+    case targetTypeMessage
+    case targetTypeField
+    case targetTypeOneof
+    case targetTypeEnum
+    case targetTypeEnumEntry
+    case targetTypeService
+    case targetTypeMethod
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionTargetType]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionTargetType] {
+      get
+    }
+  }
+  public struct EditionDefault : Swift.Sendable {
+    public var edition: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+      get
+      set
+    }
+    public var hasEdition: Swift.Bool {
+      get
+    }
+    public mutating func clearEdition()
+    public var value: Swift.String {
+      get
+      set
+    }
+    public var hasValue: Swift.Bool {
+      get
+    }
+    public mutating func clearValue()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public struct FeatureSupport : Swift.Sendable {
+    public var editionIntroduced: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+      get
+      set
+    }
+    public var hasEditionIntroduced: Swift.Bool {
+      get
+    }
+    public mutating func clearEditionIntroduced()
+    public var editionDeprecated: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+      get
+      set
+    }
+    public var hasEditionDeprecated: Swift.Bool {
+      get
+    }
+    public mutating func clearEditionDeprecated()
+    public var deprecationWarning: Swift.String {
+      get
+      set
+    }
+    public var hasDeprecationWarning: Swift.Bool {
+      get
+    }
+    public mutating func clearDeprecationWarning()
+    public var editionRemoved: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+      get
+      set
+    }
+    public var hasEditionRemoved: Swift.Bool {
+      get
+    }
+    public mutating func clearEditionRemoved()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_OneofOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_EnumOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var allowAlias: Swift.Bool {
+    get
+    set
+  }
+  public var hasAllowAlias: Swift.Bool {
+    get
+  }
+  public mutating func clearAllowAlias()
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var deprecatedLegacyJsonFieldConflicts: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecatedLegacyJsonFieldConflicts: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecatedLegacyJsonFieldConflicts()
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_EnumValueOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var debugRedact: Swift.Bool {
+    get
+    set
+  }
+  public var hasDebugRedact: Swift.Bool {
+    get
+  }
+  public mutating func clearDebugRedact()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_ServiceOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_MethodOptions : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var deprecated: Swift.Bool {
+    get
+    set
+  }
+  public var hasDeprecated: Swift.Bool {
+    get
+  }
+  public mutating func clearDeprecated()
+  public var idempotencyLevel: bureau_id_fraud_sdk.Google_Protobuf_MethodOptions.IdempotencyLevel {
+    get
+    set
+  }
+  public var hasIdempotencyLevel: Swift.Bool {
+    get
+  }
+  public mutating func clearIdempotencyLevel()
+  public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+    get
+    set
+  }
+  public var hasFeatures: Swift.Bool {
+    get
+  }
+  public mutating func clearFeatures()
+  public var uninterpretedOption: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum IdempotencyLevel : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case idempotencyUnknown
+    case noSideEffects
+    case idempotent
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_MethodOptions.IdempotencyLevel]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_MethodOptions.IdempotencyLevel] {
+      get
+    }
+  }
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_UninterpretedOption : @unchecked Swift.Sendable {
+  public var name: [bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption.NamePart]
+  public var identifierValue: Swift.String {
+    get
+    set
+  }
+  public var hasIdentifierValue: Swift.Bool {
+    get
+  }
+  public mutating func clearIdentifierValue()
+  public var positiveIntValue: Swift.UInt64 {
+    get
+    set
+  }
+  public var hasPositiveIntValue: Swift.Bool {
+    get
+  }
+  public mutating func clearPositiveIntValue()
+  public var negativeIntValue: Swift.Int64 {
+    get
+    set
+  }
+  public var hasNegativeIntValue: Swift.Bool {
+    get
+  }
+  public mutating func clearNegativeIntValue()
+  public var doubleValue: Swift.Double {
+    get
+    set
+  }
+  public var hasDoubleValue: Swift.Bool {
+    get
+  }
+  public mutating func clearDoubleValue()
+  public var stringValue: Foundation.Data {
+    get
+    set
+  }
+  public var hasStringValue: Swift.Bool {
+    get
+  }
+  public mutating func clearStringValue()
+  public var aggregateValue: Swift.String {
+    get
+    set
+  }
+  public var hasAggregateValue: Swift.Bool {
+    get
+  }
+  public mutating func clearAggregateValue()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct NamePart : Swift.Sendable {
+    public var namePart: Swift.String {
+      get
+      set
+    }
+    public var hasNamePart: Swift.Bool {
+      get
+    }
+    public mutating func clearNamePart()
+    public var isExtension: Swift.Bool {
+      get
+      set
+    }
+    public var hasIsExtension: Swift.Bool {
+      get
+    }
+    public mutating func clearIsExtension()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+}
+public struct Google_Protobuf_FeatureSet : bureau_id_fraud_sdk.ExtensibleMessage, Swift.Sendable {
+  public var fieldPresence: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.FieldPresence {
+    get
+    set
+  }
+  public var hasFieldPresence: Swift.Bool {
+    get
+  }
+  public mutating func clearFieldPresence()
+  public var enumType: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.EnumType {
+    get
+    set
+  }
+  public var hasEnumType: Swift.Bool {
+    get
+  }
+  public mutating func clearEnumType()
+  public var repeatedFieldEncoding: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.RepeatedFieldEncoding {
+    get
+    set
+  }
+  public var hasRepeatedFieldEncoding: Swift.Bool {
+    get
+  }
+  public mutating func clearRepeatedFieldEncoding()
+  public var utf8Validation: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.Utf8Validation {
+    get
+    set
+  }
+  public var hasUtf8Validation: Swift.Bool {
+    get
+  }
+  public mutating func clearUtf8Validation()
+  public var messageEncoding: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.MessageEncoding {
+    get
+    set
+  }
+  public var hasMessageEncoding: Swift.Bool {
+    get
+  }
+  public mutating func clearMessageEncoding()
+  public var jsonFormat: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.JsonFormat {
+    get
+    set
+  }
+  public var hasJsonFormat: Swift.Bool {
+    get
+  }
+  public mutating func clearJsonFormat()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum FieldPresence : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case explicit
+    case implicit
+    case legacyRequired
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.FieldPresence]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.FieldPresence] {
+      get
+    }
+  }
+  public enum EnumType : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case open
+    case closed
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.EnumType]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.EnumType] {
+      get
+    }
+  }
+  public enum RepeatedFieldEncoding : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case packed
+    case expanded
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.RepeatedFieldEncoding]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.RepeatedFieldEncoding] {
+      get
+    }
+  }
+  public enum Utf8Validation : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case verify
+    case none
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.Utf8Validation]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.Utf8Validation] {
+      get
+    }
+  }
+  public enum MessageEncoding : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case lengthPrefixed
+    case delimited
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.MessageEncoding]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.MessageEncoding] {
+      get
+    }
+  }
+  public enum JsonFormat : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case allow
+    case legacyBestEffort
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.JsonFormat]
+    public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.JsonFormat] {
+      get
+    }
+  }
+  public init()
+  public var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet
+}
+public struct Google_Protobuf_FeatureSetDefaults : Swift.Sendable {
+  public var defaults: [bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault]
+  public var minimumEdition: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+    get
+    set
+  }
+  public var hasMinimumEdition: Swift.Bool {
+    get
+  }
+  public mutating func clearMinimumEdition()
+  public var maximumEdition: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+    get
+    set
+  }
+  public var hasMaximumEdition: Swift.Bool {
+    get
+  }
+  public mutating func clearMaximumEdition()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct FeatureSetEditionDefault : @unchecked Swift.Sendable {
+    public var edition: bureau_id_fraud_sdk.Google_Protobuf_Edition {
+      get
+      set
+    }
+    public var hasEdition: Swift.Bool {
+      get
+    }
+    public mutating func clearEdition()
+    public var overridableFeatures: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+      get
+      set
+    }
+    public var hasOverridableFeatures: Swift.Bool {
+      get
+    }
+    public mutating func clearOverridableFeatures()
+    public var fixedFeatures: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+      get
+      set
+    }
+    public var hasFixedFeatures: Swift.Bool {
+      get
+    }
+    public mutating func clearFixedFeatures()
+    public var features: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet {
+      get
+      set
+    }
+    public var hasFeatures: Swift.Bool {
+      get
+    }
+    public mutating func clearFeatures()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+}
+public struct Google_Protobuf_SourceCodeInfo : Swift.Sendable {
+  public var location: [bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo.Location]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct Location : Swift.Sendable {
+    public var path: [Swift.Int32]
+    public var span: [Swift.Int32]
+    public var leadingComments: Swift.String {
+      get
+      set
+    }
+    public var hasLeadingComments: Swift.Bool {
+      get
+    }
+    public mutating func clearLeadingComments()
+    public var trailingComments: Swift.String {
+      get
+      set
+    }
+    public var hasTrailingComments: Swift.Bool {
+      get
+    }
+    public mutating func clearTrailingComments()
+    public var leadingDetachedComments: [Swift.String]
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public init()
+  }
+  public init()
+}
+public struct Google_Protobuf_GeneratedCodeInfo : Swift.Sendable {
+  public var annotation: [bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public struct Annotation : Swift.Sendable {
+    public var path: [Swift.Int32]
+    public var sourceFile: Swift.String {
+      get
+      set
+    }
+    public var hasSourceFile: Swift.Bool {
+      get
+    }
+    public mutating func clearSourceFile()
+    public var begin: Swift.Int32 {
+      get
+      set
+    }
+    public var hasBegin: Swift.Bool {
+      get
+    }
+    public mutating func clearBegin()
+    public var end: Swift.Int32 {
+      get
+      set
+    }
+    public var hasEnd: Swift.Bool {
+      get
+    }
+    public mutating func clearEnd()
+    public var semantic: bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic {
+      get
+      set
+    }
+    public var hasSemantic: Swift.Bool {
+      get
+    }
+    public mutating func clearSemantic()
+    public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+    public enum Semantic : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+      public typealias RawValue = Swift.Int
+      case none
+      case set
+      case alias
+      public init()
+      public init?(rawValue: Swift.Int)
+      public var rawValue: Swift.Int {
+        get
+      }
+      public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic]
+      public static var allCases: [bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic] {
+        get
+      }
+    }
+    public init()
+  }
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Edition : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorSet : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorSet, rhs: bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorSet) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_FileDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ExtensionRange : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ExtensionRange, rhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ExtensionRange) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ReservedRange : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ReservedRange, rhs: bureau_id_fraud_sdk.Google_Protobuf_DescriptorProto.ReservedRange) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.VerificationState : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.Declaration : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.Declaration, rhs: bureau_id_fraud_sdk.Google_Protobuf_ExtensionRangeOptions.Declaration) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.TypeEnum : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldDescriptorProto.Label : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_OneofDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_OneofDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_OneofDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto.EnumReservedRange : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto.EnumReservedRange, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumDescriptorProto.EnumReservedRange) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumValueDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValueDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValueDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ServiceDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_ServiceDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_ServiceDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_MethodDescriptorProto : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_MethodDescriptorProto, rhs: bureau_id_fraud_sdk.Google_Protobuf_MethodDescriptorProto) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FileOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FileOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_FileOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FileOptions.OptimizeMode : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_MessageOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_MessageOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_MessageOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.CType : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.JSType : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionRetention : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.OptionTargetType : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.EditionDefault : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.EditionDefault, rhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.EditionDefault) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.FeatureSupport : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.FeatureSupport, rhs: bureau_id_fraud_sdk.Google_Protobuf_FieldOptions.FeatureSupport) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_OneofOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_OneofOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_OneofOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumValueOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValueOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValueOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ServiceOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_ServiceOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_ServiceOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_MethodOptions : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_MethodOptions, rhs: bureau_id_fraud_sdk.Google_Protobuf_MethodOptions) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_MethodOptions.IdempotencyLevel : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption, rhs: bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption.NamePart : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption.NamePart, rhs: bureau_id_fraud_sdk.Google_Protobuf_UninterpretedOption.NamePart) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet, rhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSet) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.FieldPresence : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.EnumType : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.RepeatedFieldEncoding : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.Utf8Validation : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.MessageEncoding : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSet.JsonFormat : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults, rhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault, rhs: bureau_id_fraud_sdk.Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo, rhs: bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo.Location : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo.Location, rhs: bureau_id_fraud_sdk.Google_Protobuf_SourceCodeInfo.Location) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo, rhs: bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation, rhs: bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+public enum BinaryEncodingError : Swift.Error, Swift.Equatable {
+  case anyTypeURLNotRegistered(typeURL: Swift.String)
+  case anyTranscodeFailure
+  case missingRequiredFields
+  case tooLarge
+  public static func == (a: bureau_id_fraud_sdk.BinaryEncodingError, b: bureau_id_fraud_sdk.BinaryEncodingError) -> Swift.Bool
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : Swift.ExpressibleByIntegerLiteral {
+  public typealias IntegerLiteralType = Swift.Int64
+  public init(integerLiteral value: Swift.Int64)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : Swift.ExpressibleByFloatLiteral {
+  public typealias FloatLiteralType = Swift.Double
+  public init(floatLiteral value: Swift.Double)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : Swift.ExpressibleByBooleanLiteral {
+  public typealias BooleanLiteralType = Swift.Bool
+  public init(booleanLiteral value: Swift.Bool)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : Swift.ExpressibleByStringLiteral {
+  public typealias StringLiteralType = Swift.String
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public init(stringLiteral value: Swift.String)
+  public init(unicodeScalarLiteral value: Swift.String)
+  public init(extendedGraphemeClusterLiteral value: Swift.String)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : Swift.ExpressibleByNilLiteral {
+  public init(nilLiteral: ())
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value {
+  public init(numberValue: Swift.Double)
+  public init(stringValue: Swift.String)
+  public init(boolValue: Swift.Bool)
+  public init(structValue: bureau_id_fraud_sdk.Google_Protobuf_Struct)
+  public init(listValue: bureau_id_fraud_sdk.Google_Protobuf_ListValue)
+}
+public enum BinaryDelimited {
+  public enum Error : Swift.Error {
+    case unknownStreamError
+    case truncated
+    case tooLarge
+    case malformedLength
+    case noBytesAvailable
+    public static func == (a: bureau_id_fraud_sdk.BinaryDelimited.Error, b: bureau_id_fraud_sdk.BinaryDelimited.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func serialize(message: any bureau_id_fraud_sdk.Message, to stream: Foundation.OutputStream, partial: Swift.Bool = false) throws
+  public static func parse<M>(messageType: M.Type, from stream: Foundation.InputStream, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws -> M where M : bureau_id_fraud_sdk.Message
+  public static func merge<M>(into message: inout M, from stream: Foundation.InputStream, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws where M : bureau_id_fraud_sdk.Message
+}
+#if compiler(>=5.3) && $RethrowsProtocol
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension _Concurrency.AsyncSequence where Self.Element == Swift.UInt8 {
+  @inlinable public func binaryProtobufDelimitedMessages<M>(of messageType: M.Type = M.self, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) -> bureau_id_fraud_sdk.AsyncMessageSequence<Self, M> where M : bureau_id_fraud_sdk.Message {
+    AsyncMessageSequence<Self, M>(
+      base: self,
+      extensions: extensions,
+      partial: partial,
+      options: options
+    )
+  }
+}
+#endif
+#if compiler(>=5.3) && $RethrowsProtocol
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct AsyncMessageSequence<Base, M> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, M : bureau_id_fraud_sdk.Message, Base.Element == Swift.UInt8 {
+  public typealias Element = M
+  public init(base: Base, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions())
+  public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator?
+    @usableFromInline
+    internal let extensions: (any bureau_id_fraud_sdk.ExtensionMap)?
+    @usableFromInline
+    internal let partial: Swift.Bool
+    @usableFromInline
+    internal let options: bureau_id_fraud_sdk.BinaryDecodingOptions
+    #if compiler(>=5.3) && $AsyncAwait
+    @inlinable internal mutating func nextVarInt() async throws -> Swift.UInt64? {
+      var messageSize: UInt64 = 0
+      var shift: UInt64 = 0
+
+      while let byte = try await iterator?.next() {
+        messageSize |= UInt64(byte & 0x7f) << shift
+        shift += UInt64(7)
+        if shift > 35 {
+          iterator = nil
+          throw BinaryDelimited.Error.malformedLength
+        }
+        if (byte & 0x80 == 0) {
+          return messageSize
+        }
+      }
+      if (shift > 0) {
+        // The stream has ended inside a varint.
+        iterator = nil
+        throw BinaryDelimited.Error.truncated
+      }
+      return nil // End of stream reached.
+    }
+    #endif
+    #if compiler(>=5.3) && $AsyncAwait
+    @usableFromInline
+    internal mutating func readBytes(_ size: Swift.Int) async throws -> [Swift.UInt8]
+    #endif
+    #if compiler(>=5.3) && $AsyncAwait
+    @inlinable public mutating func next() async throws -> M? {
+      guard let messageSize = try await nextVarInt() else {
+        iterator = nil
+        return nil
+      }
+      guard messageSize <= UInt64(0x7fffffff) else {
+        iterator = nil
+        throw BinaryDecodingError.tooLarge
+      }
+      if messageSize == 0 {
+        return try M(
+          serializedBytes: [],
+          extensions: extensions,
+          partial: partial,
+          options: options
+        )
+      }
+      let buffer = try await readBytes(Int(messageSize))
+      return try M(
+        serializedBytes: buffer,
+        extensions: extensions,
+        partial: partial,
+        options: options
+      )
+    }
+    #endif
+    public typealias Element = M
+  }
+  public func makeAsyncIterator() -> bureau_id_fraud_sdk.AsyncMessageSequence<Base, M>.AsyncIterator
+}
+#endif
+#if compiler(>=5.3) && $RethrowsProtocol
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension bureau_id_fraud_sdk.AsyncMessageSequence : Swift.Sendable where Base : Swift.Sendable {
+}
+#endif
+#if compiler(>=5.3) && $RethrowsProtocol
+@available(*, unavailable)
+extension bureau_id_fraud_sdk.AsyncMessageSequence.AsyncIterator : Swift.Sendable {
+}
+#endif
+public protocol FingerprintFunction {
+  func fingerprint(data: Foundation.Data) -> Swift.String
+}
+public enum AnyUnpackError : Swift.Error {
+  case typeMismatch
+  case malformedWellKnownTypeJSON
+  case malformedAnyField
+  public static func == (a: bureau_id_fraud_sdk.AnyUnpackError, b: bureau_id_fraud_sdk.AnyUnpackError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_DoubleValue : Swift.ExpressibleByFloatLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufDouble
+  public typealias FloatLiteralType = bureau_id_fraud_sdk.Google_Protobuf_DoubleValue.WrappedType.BaseType
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_DoubleValue.WrappedType.BaseType)
+  public init(floatLiteral: bureau_id_fraud_sdk.Google_Protobuf_DoubleValue.FloatLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FloatValue : Swift.ExpressibleByFloatLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufFloat
+  public typealias FloatLiteralType = Swift.Float
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_FloatValue.WrappedType.BaseType)
+  public init(floatLiteral: bureau_id_fraud_sdk.Google_Protobuf_FloatValue.FloatLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Int64Value : Swift.ExpressibleByIntegerLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufInt64
+  public typealias IntegerLiteralType = bureau_id_fraud_sdk.Google_Protobuf_Int64Value.WrappedType.BaseType
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_Int64Value.WrappedType.BaseType)
+  public init(integerLiteral: bureau_id_fraud_sdk.Google_Protobuf_Int64Value.IntegerLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UInt64Value : Swift.ExpressibleByIntegerLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufUInt64
+  public typealias IntegerLiteralType = bureau_id_fraud_sdk.Google_Protobuf_UInt64Value.WrappedType.BaseType
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_UInt64Value.WrappedType.BaseType)
+  public init(integerLiteral: bureau_id_fraud_sdk.Google_Protobuf_UInt64Value.IntegerLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Int32Value : Swift.ExpressibleByIntegerLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufInt32
+  public typealias IntegerLiteralType = bureau_id_fraud_sdk.Google_Protobuf_Int32Value.WrappedType.BaseType
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_Int32Value.WrappedType.BaseType)
+  public init(integerLiteral: bureau_id_fraud_sdk.Google_Protobuf_Int32Value.IntegerLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UInt32Value : Swift.ExpressibleByIntegerLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufUInt32
+  public typealias IntegerLiteralType = bureau_id_fraud_sdk.Google_Protobuf_UInt32Value.WrappedType.BaseType
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_UInt32Value.WrappedType.BaseType)
+  public init(integerLiteral: bureau_id_fraud_sdk.Google_Protobuf_UInt32Value.IntegerLiteralType)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_BoolValue : Swift.ExpressibleByBooleanLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufBool
+  public typealias BooleanLiteralType = Swift.Bool
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_BoolValue.WrappedType.BaseType)
+  public init(booleanLiteral: Swift.Bool)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_StringValue : Swift.ExpressibleByStringLiteral {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufString
+  public typealias StringLiteralType = Swift.String
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_StringValue.WrappedType.BaseType)
+  public init(stringLiteral: Swift.String)
+  public init(extendedGraphemeClusterLiteral: Swift.String)
+  public init(unicodeScalarLiteral: Swift.String)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_BytesValue {
+  public typealias WrappedType = bureau_id_fraud_sdk.ProtobufBytes
+  public init(_ value: bureau_id_fraud_sdk.Google_Protobuf_BytesValue.WrappedType.BaseType)
+}
+@preconcurrency public protocol AnyExtensionField : Swift.Sendable {
+  func hash(into hasher: inout Swift.Hasher)
+  var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension { get }
+  func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  mutating func decodeExtensionField<T>(decoder: inout T) throws where T : bureau_id_fraud_sdk.Decoder
+  func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  var isInitialized: Swift.Bool { get }
+}
+extension bureau_id_fraud_sdk.AnyExtensionField {
+  public var isInitialized: Swift.Bool {
+    get
+  }
+}
+@preconcurrency public protocol ExtensionField : Swift.Hashable, bureau_id_fraud_sdk.AnyExtensionField {
+  associatedtype ValueType
+  var value: Self.ValueType { get set }
+  init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: Self.ValueType)
+  init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+}
+public struct OptionalExtensionField<T> : bureau_id_fraud_sdk.ExtensionField where T : bureau_id_fraud_sdk.FieldType {
+  public typealias BaseType = T.BaseType
+  public typealias ValueType = bureau_id_fraud_sdk.OptionalExtensionField<T>.BaseType
+  public var value: bureau_id_fraud_sdk.OptionalExtensionField<T>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.OptionalExtensionField<T>, rhs: bureau_id_fraud_sdk.OptionalExtensionField<T>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.OptionalExtensionField<T>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct RepeatedExtensionField<T> : bureau_id_fraud_sdk.ExtensionField where T : bureau_id_fraud_sdk.FieldType {
+  public typealias BaseType = T.BaseType
+  public typealias ValueType = [bureau_id_fraud_sdk.RepeatedExtensionField<T>.BaseType]
+  public var value: bureau_id_fraud_sdk.RepeatedExtensionField<T>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.RepeatedExtensionField<T>, rhs: bureau_id_fraud_sdk.RepeatedExtensionField<T>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.RepeatedExtensionField<T>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PackedExtensionField<T> : bureau_id_fraud_sdk.ExtensionField where T : bureau_id_fraud_sdk.FieldType {
+  public typealias BaseType = T.BaseType
+  public typealias ValueType = [bureau_id_fraud_sdk.PackedExtensionField<T>.BaseType]
+  public var value: bureau_id_fraud_sdk.PackedExtensionField<T>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.PackedExtensionField<T>, rhs: bureau_id_fraud_sdk.PackedExtensionField<T>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.PackedExtensionField<T>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OptionalEnumExtensionField<E> : bureau_id_fraud_sdk.ExtensionField where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int {
+  public typealias BaseType = E
+  public typealias ValueType = E
+  public var value: bureau_id_fraud_sdk.OptionalEnumExtensionField<E>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.OptionalEnumExtensionField<E>, rhs: bureau_id_fraud_sdk.OptionalEnumExtensionField<E>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.OptionalEnumExtensionField<E>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct RepeatedEnumExtensionField<E> : bureau_id_fraud_sdk.ExtensionField where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int {
+  public typealias BaseType = E
+  public typealias ValueType = [E]
+  public var value: bureau_id_fraud_sdk.RepeatedEnumExtensionField<E>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.RepeatedEnumExtensionField<E>, rhs: bureau_id_fraud_sdk.RepeatedEnumExtensionField<E>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.RepeatedEnumExtensionField<E>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PackedEnumExtensionField<E> : bureau_id_fraud_sdk.ExtensionField where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int {
+  public typealias BaseType = E
+  public typealias ValueType = [E]
+  public var value: bureau_id_fraud_sdk.PackedEnumExtensionField<E>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.PackedEnumExtensionField<E>, rhs: bureau_id_fraud_sdk.PackedEnumExtensionField<E>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.PackedEnumExtensionField<E>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OptionalMessageExtensionField<M> : bureau_id_fraud_sdk.ExtensionField where M : Swift.Equatable, M : bureau_id_fraud_sdk.Message {
+  public typealias BaseType = M
+  public typealias ValueType = bureau_id_fraud_sdk.OptionalMessageExtensionField<M>.BaseType
+  public var value: bureau_id_fraud_sdk.OptionalMessageExtensionField<M>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.OptionalMessageExtensionField<M>, rhs: bureau_id_fraud_sdk.OptionalMessageExtensionField<M>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.OptionalMessageExtensionField<M>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct RepeatedMessageExtensionField<M> : bureau_id_fraud_sdk.ExtensionField where M : Swift.Equatable, M : bureau_id_fraud_sdk.Message {
+  public typealias BaseType = M
+  public typealias ValueType = [bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>.BaseType]
+  public var value: bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>, rhs: bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OptionalGroupExtensionField<G> : bureau_id_fraud_sdk.ExtensionField where G : Swift.Hashable, G : bureau_id_fraud_sdk.Message {
+  public typealias BaseType = G
+  public typealias ValueType = bureau_id_fraud_sdk.OptionalGroupExtensionField<G>.BaseType
+  public var value: G
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.OptionalGroupExtensionField<G>, rhs: bureau_id_fraud_sdk.OptionalGroupExtensionField<G>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.OptionalGroupExtensionField<G>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct RepeatedGroupExtensionField<G> : bureau_id_fraud_sdk.ExtensionField where G : Swift.Hashable, G : bureau_id_fraud_sdk.Message {
+  public typealias BaseType = G
+  public typealias ValueType = [bureau_id_fraud_sdk.RepeatedGroupExtensionField<G>.BaseType]
+  public var value: bureau_id_fraud_sdk.RepeatedGroupExtensionField<G>.ValueType
+  public var protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension
+  public static func == (lhs: bureau_id_fraud_sdk.RepeatedGroupExtensionField<G>, rhs: bureau_id_fraud_sdk.RepeatedGroupExtensionField<G>) -> Swift.Bool
+  public init(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, value: bureau_id_fraud_sdk.RepeatedGroupExtensionField<G>.ValueType)
+  public func hash(into hasher: inout Swift.Hasher)
+  public func isEqual(other: any bureau_id_fraud_sdk.AnyExtensionField) -> Swift.Bool
+  public mutating func decodeExtensionField<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public init?<D>(protobufExtension: any bureau_id_fraud_sdk.AnyMessageExtension, decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum Google_Protobuf_NullValue : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case nullValue
+  case UNRECOGNIZED(Swift.Int)
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let allCases: [bureau_id_fraud_sdk.Google_Protobuf_NullValue]
+  public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_NullValue]
+}
+public struct Google_Protobuf_Struct : Swift.Sendable {
+  public var fields: [Swift.String : bureau_id_fraud_sdk.Google_Protobuf_Value]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Value : Swift.Sendable {
+  public var kind: bureau_id_fraud_sdk.Google_Protobuf_Value.OneOf_Kind?
+  public var nullValue: bureau_id_fraud_sdk.Google_Protobuf_NullValue {
+    get
+    set
+  }
+  public var numberValue: Swift.Double {
+    get
+    set
+  }
+  public var stringValue: Swift.String {
+    get
+    set
+  }
+  public var boolValue: Swift.Bool {
+    get
+    set
+  }
+  public var structValue: bureau_id_fraud_sdk.Google_Protobuf_Struct {
+    get
+    set
+  }
+  public var listValue: bureau_id_fraud_sdk.Google_Protobuf_ListValue {
+    get
+    set
+  }
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum OneOf_Kind : Swift.Equatable, Swift.Sendable {
+    case nullValue(bureau_id_fraud_sdk.Google_Protobuf_NullValue)
+    case numberValue(Swift.Double)
+    case stringValue(Swift.String)
+    case boolValue(Swift.Bool)
+    case structValue(bureau_id_fraud_sdk.Google_Protobuf_Struct)
+    case listValue(bureau_id_fraud_sdk.Google_Protobuf_ListValue)
+    public static func == (a: bureau_id_fraud_sdk.Google_Protobuf_Value.OneOf_Kind, b: bureau_id_fraud_sdk.Google_Protobuf_Value.OneOf_Kind) -> Swift.Bool
+  }
+  public init()
+}
+public struct Google_Protobuf_ListValue : Swift.Sendable {
+  public var values: [bureau_id_fraud_sdk.Google_Protobuf_Value]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_NullValue : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Struct : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Struct, rhs: bureau_id_fraud_sdk.Google_Protobuf_Struct) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Value : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Value, rhs: bureau_id_fraud_sdk.Google_Protobuf_Value) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ListValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_ListValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_ListValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@preconcurrency public protocol Enum : Swift.Hashable, Swift.RawRepresentable, Swift.Sendable {
+  init()
+  init?(rawValue: Swift.Int)
+  var rawValue: Swift.Int { get }
+}
+extension bureau_id_fraud_sdk.Enum {
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public struct Google_Protobuf_Empty : Swift.Sendable {
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Empty : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Empty, rhs: bureau_id_fraud_sdk.Google_Protobuf_Empty) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol Visitor {
+  mutating func visitSingularFloatField(value: Swift.Float, fieldNumber: Swift.Int) throws
+  mutating func visitSingularDoubleField(value: Swift.Double, fieldNumber: Swift.Int) throws
+  mutating func visitSingularInt32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  mutating func visitSingularInt64Field(value: Swift.Int64, fieldNumber: Swift.Int) throws
+  mutating func visitSingularUInt32Field(value: Swift.UInt32, fieldNumber: Swift.Int) throws
+  mutating func visitSingularUInt64Field(value: Swift.UInt64, fieldNumber: Swift.Int) throws
+  mutating func visitSingularSInt32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  mutating func visitSingularSInt64Field(value: Swift.Int64, fieldNumber: Swift.Int) throws
+  mutating func visitSingularFixed32Field(value: Swift.UInt32, fieldNumber: Swift.Int) throws
+  mutating func visitSingularFixed64Field(value: Swift.UInt64, fieldNumber: Swift.Int) throws
+  mutating func visitSingularSFixed32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  mutating func visitSingularSFixed64Field(value: Swift.Int64, fieldNumber: Swift.Int) throws
+  mutating func visitSingularBoolField(value: Swift.Bool, fieldNumber: Swift.Int) throws
+  mutating func visitSingularStringField(value: Swift.String, fieldNumber: Swift.Int) throws
+  mutating func visitSingularBytesField(value: Foundation.Data, fieldNumber: Swift.Int) throws
+  mutating func visitSingularEnumField<E>(value: E, fieldNumber: Swift.Int) throws where E : bureau_id_fraud_sdk.Enum
+  mutating func visitSingularMessageField<M>(value: M, fieldNumber: Swift.Int) throws where M : bureau_id_fraud_sdk.Message
+  mutating func visitSingularGroupField<G>(value: G, fieldNumber: Swift.Int) throws where G : bureau_id_fraud_sdk.Message
+  mutating func visitRepeatedFloatField(value: [Swift.Float], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedDoubleField(value: [Swift.Double], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedUInt32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedUInt64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedSInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedSInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedFixed32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedFixed64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedSFixed32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedSFixed64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedBoolField(value: [Swift.Bool], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedStringField(value: [Swift.String], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedBytesField(value: [Foundation.Data], fieldNumber: Swift.Int) throws
+  mutating func visitRepeatedEnumField<E>(value: [E], fieldNumber: Swift.Int) throws where E : bureau_id_fraud_sdk.Enum
+  mutating func visitRepeatedMessageField<M>(value: [M], fieldNumber: Swift.Int) throws where M : bureau_id_fraud_sdk.Message
+  mutating func visitRepeatedGroupField<G>(value: [G], fieldNumber: Swift.Int) throws where G : bureau_id_fraud_sdk.Message
+  mutating func visitPackedFloatField(value: [Swift.Float], fieldNumber: Swift.Int) throws
+  mutating func visitPackedDoubleField(value: [Swift.Double], fieldNumber: Swift.Int) throws
+  mutating func visitPackedInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitPackedInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitPackedUInt32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  mutating func visitPackedUInt64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  mutating func visitPackedSInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitPackedSInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitPackedFixed32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  mutating func visitPackedFixed64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  mutating func visitPackedSFixed32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  mutating func visitPackedSFixed64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  mutating func visitPackedBoolField(value: [Swift.Bool], fieldNumber: Swift.Int) throws
+  mutating func visitPackedEnumField<E>(value: [E], fieldNumber: Swift.Int) throws where E : bureau_id_fraud_sdk.Enum
+  mutating func visitMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.Type, value: bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.BaseType, fieldNumber: Swift.Int) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.MapValueType
+  mutating func visitMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.Type, value: bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.BaseType, fieldNumber: Swift.Int) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.Enum, ValueType.RawValue == Swift.Int
+  mutating func visitMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.Type, value: bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.BaseType, fieldNumber: Swift.Int) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : Swift.Hashable, ValueType : bureau_id_fraud_sdk.Message
+  mutating func visitExtensionFields(fields: bureau_id_fraud_sdk.ExtensionFieldValueSet, start: Swift.Int, end: Swift.Int) throws
+  mutating func visitExtensionFieldsAsMessageSet(fields: bureau_id_fraud_sdk.ExtensionFieldValueSet, start: Swift.Int, end: Swift.Int) throws
+  mutating func visitUnknown(bytes: Foundation.Data) throws
+}
+extension bureau_id_fraud_sdk.Visitor {
+  public mutating func visitSingularFloatField(value: Swift.Float, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularInt32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularUInt32Field(value: Swift.UInt32, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularSInt32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularSInt64Field(value: Swift.Int64, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularFixed32Field(value: Swift.UInt32, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularFixed64Field(value: Swift.UInt64, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularSFixed32Field(value: Swift.Int32, fieldNumber: Swift.Int) throws
+  public mutating func visitSingularSFixed64Field(value: Swift.Int64, fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedFloatField(value: [Swift.Float], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedDoubleField(value: [Swift.Double], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedUInt32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedUInt64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedSInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedSInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedFixed32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedFixed64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedSFixed32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedSFixed64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedBoolField(value: [Swift.Bool], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedStringField(value: [Swift.String], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedBytesField(value: [Foundation.Data], fieldNumber: Swift.Int) throws
+  public mutating func visitRepeatedEnumField<E>(value: [E], fieldNumber: Swift.Int) throws where E : bureau_id_fraud_sdk.Enum
+  public mutating func visitRepeatedMessageField<M>(value: [M], fieldNumber: Swift.Int) throws where M : bureau_id_fraud_sdk.Message
+  public mutating func visitRepeatedGroupField<G>(value: [G], fieldNumber: Swift.Int) throws where G : bureau_id_fraud_sdk.Message
+  public mutating func visitPackedFloatField(value: [Swift.Float], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedDoubleField(value: [Swift.Double], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedUInt32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedUInt64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedSInt32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedSInt64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedFixed32Field(value: [Swift.UInt32], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedFixed64Field(value: [Swift.UInt64], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedSFixed32Field(value: [Swift.Int32], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedSFixed64Field(value: [Swift.Int64], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedBoolField(value: [Swift.Bool], fieldNumber: Swift.Int) throws
+  public mutating func visitPackedEnumField<E>(value: [E], fieldNumber: Swift.Int) throws where E : bureau_id_fraud_sdk.Enum
+  public mutating func visitSingularGroupField<G>(value: G, fieldNumber: Swift.Int) throws where G : bureau_id_fraud_sdk.Message
+  public mutating func visitExtensionFieldsAsMessageSet(fields: bureau_id_fraud_sdk.ExtensionFieldValueSet, start: Swift.Int, end: Swift.Int) throws
+  public mutating func visitExtensionFields(fields: bureau_id_fraud_sdk.ExtensionFieldValueSet, start: Swift.Int, end: Swift.Int) throws
+}
+@preconcurrency public protocol ExtensibleMessage : bureau_id_fraud_sdk.Message {
+  var _protobuf_extensionFieldValues: bureau_id_fraud_sdk.ExtensionFieldValueSet { get set }
+}
+extension bureau_id_fraud_sdk.ExtensibleMessage {
+  public mutating func setExtensionValue<F>(ext: bureau_id_fraud_sdk.MessageExtension<F, Self>, value: F.ValueType) where F : bureau_id_fraud_sdk.ExtensionField
+  public func getExtensionValue<F>(ext: bureau_id_fraud_sdk.MessageExtension<F, Self>) -> F.ValueType? where F : bureau_id_fraud_sdk.ExtensionField
+  public func hasExtensionValue<F>(ext: bureau_id_fraud_sdk.MessageExtension<F, Self>) -> Swift.Bool where F : bureau_id_fraud_sdk.ExtensionField
+  public mutating func clearExtensionValue<F>(ext: bureau_id_fraud_sdk.MessageExtension<F, Self>) where F : bureau_id_fraud_sdk.ExtensionField
+}
+extension bureau_id_fraud_sdk.ExtensibleMessage {
+  public mutating func setExtensionValue<T>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.RepeatedExtensionField<T>, Self>, value: [T.BaseType]) where T : bureau_id_fraud_sdk.FieldType
+  public mutating func setExtensionValue<T>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.PackedExtensionField<T>, Self>, value: [T.BaseType]) where T : bureau_id_fraud_sdk.FieldType
+  public mutating func setExtensionValue<E>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.RepeatedEnumExtensionField<E>, Self>, value: [E]) where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int
+  public mutating func setExtensionValue<E>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.PackedEnumExtensionField<E>, Self>, value: [E]) where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int
+  public mutating func setExtensionValue<M>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.RepeatedMessageExtensionField<M>, Self>, value: [M]) where M : Swift.Equatable, M : bureau_id_fraud_sdk.Message
+  public mutating func setExtensionValue<M>(ext: bureau_id_fraud_sdk.MessageExtension<bureau_id_fraud_sdk.RepeatedGroupExtensionField<M>, Self>, value: [M]) where M : Swift.Hashable, M : bureau_id_fraud_sdk.Message
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Any {
+  @discardableResult
+  public static func register(messageType: any bureau_id_fraud_sdk.Message.Type) -> Swift.Bool
+  public static func messageType(forTypeURL url: Swift.String) -> (any bureau_id_fraud_sdk.Message.Type)?
+  public static func messageType(forMessageName name: Swift.String) -> (any bureau_id_fraud_sdk.Message.Type)?
+}
+@preconcurrency public protocol FieldType : Swift.Sendable {
+  associatedtype BaseType : Swift.Hashable, Swift.Sendable
+  static var proto3DefaultValue: Self.BaseType { get }
+  static func decodeSingular<D>(value: inout Self.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  static func decodeRepeated<D>(value: inout [Self.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  static func visitSingular<V>(value: Self.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  static func visitRepeated<V>(value: [Self.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  static func visitPacked<V>(value: [Self.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+@preconcurrency public protocol MapKeyType : bureau_id_fraud_sdk.FieldType {
+  static func _lessThan(lhs: Self.BaseType, rhs: Self.BaseType) -> Swift.Bool
+}
+extension bureau_id_fraud_sdk.MapKeyType where Self.BaseType : Swift.Comparable {
+  public static func _lessThan(lhs: Self.BaseType, rhs: Self.BaseType) -> Swift.Bool
+}
+@preconcurrency public protocol MapValueType : bureau_id_fraud_sdk.FieldType {
+}
+public struct ProtobufFloat : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Float
+  public static var proto3DefaultValue: Swift.Float {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufFloat.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufFloat.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufFloat.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufFloat.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufFloat.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufDouble : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Double
+  public static var proto3DefaultValue: Swift.Double {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufDouble.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufDouble.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufDouble.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufDouble.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufDouble.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufInt32 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int32
+  public static var proto3DefaultValue: Swift.Int32 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufInt32.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufInt32.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufInt32.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufInt64 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int64
+  public static var proto3DefaultValue: Swift.Int64 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufInt64.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufInt64.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufInt64.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufUInt32 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.UInt32
+  public static var proto3DefaultValue: Swift.UInt32 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufUInt32.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufUInt32.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufUInt32.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufUInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufUInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufUInt64 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.UInt64
+  public static var proto3DefaultValue: Swift.UInt64 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufUInt64.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufUInt64.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufUInt64.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufUInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufUInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufSInt32 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int32
+  public static var proto3DefaultValue: Swift.Int32 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufSInt32.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufSInt32.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufSInt32.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufSInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufSInt32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufSInt64 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int64
+  public static var proto3DefaultValue: Swift.Int64 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufSInt64.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufSInt64.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufSInt64.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufSInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufSInt64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufFixed32 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.UInt32
+  public static var proto3DefaultValue: Swift.UInt32 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufFixed32.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufFixed32.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufFixed32.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufFixed32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufFixed32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufFixed64 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.UInt64
+  public static var proto3DefaultValue: Swift.UInt64 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufFixed64.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufFixed64.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufFixed64.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufFixed64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufFixed64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufSFixed32 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int32
+  public static var proto3DefaultValue: Swift.Int32 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufSFixed32.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufSFixed32.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufSFixed32.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufSFixed32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufSFixed32.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufSFixed64 : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Int64
+  public static var proto3DefaultValue: Swift.Int64 {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufSFixed64.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufSFixed64.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufSFixed64.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufSFixed64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufSFixed64.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufBool : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.Bool
+  public static var proto3DefaultValue: Swift.Bool {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufBool.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufBool.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufBool.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufBool.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufBool.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func _lessThan(lhs: bureau_id_fraud_sdk.ProtobufBool.BaseType, rhs: bureau_id_fraud_sdk.ProtobufBool.BaseType) -> Swift.Bool
+}
+public struct ProtobufString : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapKeyType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Swift.String
+  public static var proto3DefaultValue: Swift.String {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufString.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufString.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufString.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufString.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufString.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+public struct ProtobufBytes : bureau_id_fraud_sdk.FieldType, bureau_id_fraud_sdk.MapValueType {
+  public typealias BaseType = Foundation.Data
+  public static var proto3DefaultValue: Foundation.Data {
+    get
+  }
+  public static func decodeSingular<D>(value: inout bureau_id_fraud_sdk.ProtobufBytes.BaseType?, from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func decodeRepeated<D>(value: inout [bureau_id_fraud_sdk.ProtobufBytes.BaseType], from decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public static func visitSingular<V>(value: bureau_id_fraud_sdk.ProtobufBytes.BaseType, fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitRepeated<V>(value: [bureau_id_fraud_sdk.ProtobufBytes.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func visitPacked<V>(value: [bureau_id_fraud_sdk.ProtobufBytes.BaseType], fieldNumber: Swift.Int, with visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldMask {
+  public init(protoPaths: [Swift.String])
+  public init(protoPaths: Swift.String...)
+  public init?(jsonPaths: Swift.String...)
+}
+extension bureau_id_fraud_sdk.Message {
+  public init(unpackingAny: bureau_id_fraud_sdk.Google_Protobuf_Any, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws
+}
+extension bureau_id_fraud_sdk.Message {
+  public func textFormatString() -> Swift.String
+  public func textFormatString(options: bureau_id_fraud_sdk.TextFormatEncodingOptions) -> Swift.String
+  public init(textFormatString: Swift.String, options: bureau_id_fraud_sdk.TextFormatDecodingOptions = TextFormatDecodingOptions(), extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil) throws
+}
+public struct Google_Protobuf_Api : Swift.Sendable {
+  public var name: Swift.String
+  public var methods: [bureau_id_fraud_sdk.Google_Protobuf_Method]
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var version: Swift.String
+  public var sourceContext: bureau_id_fraud_sdk.Google_Protobuf_SourceContext {
+    get
+    set
+  }
+  public var hasSourceContext: Swift.Bool {
+    get
+  }
+  public mutating func clearSourceContext()
+  public var mixins: [bureau_id_fraud_sdk.Google_Protobuf_Mixin]
+  public var syntax: bureau_id_fraud_sdk.Google_Protobuf_Syntax
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Method : Swift.Sendable {
+  public var name: Swift.String
+  public var requestTypeURL: Swift.String
+  public var requestStreaming: Swift.Bool
+  public var responseTypeURL: Swift.String
+  public var responseStreaming: Swift.Bool
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var syntax: bureau_id_fraud_sdk.Google_Protobuf_Syntax
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Mixin : Swift.Sendable {
+  public var name: Swift.String
+  public var root: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Api : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Api, rhs: bureau_id_fraud_sdk.Google_Protobuf_Api) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Method : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Method, rhs: bureau_id_fraud_sdk.Google_Protobuf_Method) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Mixin : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Mixin, rhs: bureau_id_fraud_sdk.Google_Protobuf_Mixin) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Struct : Swift.ExpressibleByDictionaryLiteral {
+  public typealias Key = Swift.String
+  public typealias Value = bureau_id_fraud_sdk.Google_Protobuf_Value
+  public init(dictionaryLiteral: (Swift.String, bureau_id_fraud_sdk.Google_Protobuf_Value)...)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Struct {
+  public init(fields: [Swift.String : bureau_id_fraud_sdk.Google_Protobuf_Value])
+  public subscript(key: Swift.String) -> bureau_id_fraud_sdk.Google_Protobuf_Value? {
+    get
+    set(newValue)
+  }
+}
+extension bureau_id_fraud_sdk.Message {
+  @inlinable public init(serializedData data: Foundation.Data, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws {
+    self.init()
+    try merge(serializedBytes: data, extensions: extensions, partial: partial, options: options)
+  }
+  @inlinable public mutating func merge(serializedData data: Foundation.Data, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws {
+    try merge(serializedBytes: data, extensions: extensions, partial: partial, options: options)
+  }
+  public func serializedData(partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryEncodingOptions = BinaryEncodingOptions()) throws -> Foundation.Data
+}
+@_hasMissingDesignatedInitializers public class Fingerprinter {
+  @objc deinit
+}
+extension bureau_id_fraud_sdk.Fingerprinter {
+  public func getDeviceId(_ completion: @escaping (Swift.String?) -> Swift.Void)
+  public func getFingerprint(_ completion: @escaping (Swift.String?) -> Swift.Void)
+  public func getFingerprintTree(_ completion: @escaping (bureau_id_fraud_sdk.FingerprintTree) -> Swift.Void)
+}
+@available(iOS 13.0, tvOS 13.0, *)
+extension bureau_id_fraud_sdk.Fingerprinter {
+  #if compiler(>=5.3) && $AsyncAwait
+  public func getDeviceId() async -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func getFingerprintTree() async -> bureau_id_fraud_sdk.FingerprintTree
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func getFingerprint() async -> Swift.String?
+  #endif
+}
+public struct UnknownStorage : Swift.Equatable, @unchecked Swift.Sendable {
+  public var data: Foundation.Data {
+    get
+  }
+  public init()
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (a: bureau_id_fraud_sdk.UnknownStorage, b: bureau_id_fraud_sdk.UnknownStorage) -> Swift.Bool
+}
+public struct JSONDecodingOptions : Swift.Sendable {
+  public var messageDepthLimit: Swift.Int
+  public var ignoreUnknownFields: Swift.Bool
+  public init()
+}
+public enum JSONEncodingError : Swift.Error, Swift.Equatable {
+  case anyTypeURLNotRegistered(typeURL: Swift.String)
+  case timestampRange
+  case durationRange
+  case fieldMaskConversion
+  case missingFieldNames
+  case missingValue
+  case valueNumberNotFinite
+  public static func == (a: bureau_id_fraud_sdk.JSONEncodingError, b: bureau_id_fraud_sdk.JSONEncodingError) -> Swift.Bool
+}
+public struct Google_Protobuf_Any : @unchecked Swift.Sendable {
+  public var typeURL: Swift.String {
+    get
+    set
+  }
+  public var value: Foundation.Data {
+    get
+    set
+  }
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Any : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Any, rhs: bureau_id_fraud_sdk.Google_Protobuf_Any) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum BinaryDecodingError : Swift.Error {
+  case trailingGarbage
+  case truncated
+  case invalidUTF8
+  case malformedProtobuf
+  case missingRequiredFields
+  case internalExtensionError
+  case messageDepthLimit
+  case tooLarge
+  public static func == (a: bureau_id_fraud_sdk.BinaryDecodingError, b: bureau_id_fraud_sdk.BinaryDecodingError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct _NameMap : Swift.ExpressibleByDictionaryLiteral {
+  public enum NameDescription {
+    case same(proto: Swift.StaticString)
+    case standard(proto: Swift.StaticString)
+    case unique(proto: Swift.StaticString, json: Swift.StaticString)
+    case aliased(proto: Swift.StaticString, aliases: [Swift.StaticString])
+  }
+  public init()
+  public init(dictionaryLiteral elements: (Swift.Int, bureau_id_fraud_sdk._NameMap.NameDescription)...)
+  public typealias Key = Swift.Int
+  public typealias Value = bureau_id_fraud_sdk._NameMap.NameDescription
+}
+extension bureau_id_fraud_sdk._NameMap : Swift.Sendable {
+}
+public protocol FingerprinterInstanceProviding {
+  static func getInstance(_ configuration: bureau_id_fraud_sdk.Configuration) -> bureau_id_fraud_sdk.Fingerprinter
+}
+@_hasMissingDesignatedInitializers public class FingerprinterFactory : bureau_id_fraud_sdk.FingerprinterInstanceProviding {
+  public static func getInstance(_ configuration: bureau_id_fraud_sdk.Configuration = Configuration()) -> bureau_id_fraud_sdk.Fingerprinter
+  @objc deinit
+}
+public enum Internal {
+  public static func areAllInitialized(_ listOfMessages: [any bureau_id_fraud_sdk.Message]) -> Swift.Bool
+  public static func areAllInitialized<K>(_ mapToMessages: [K : any bureau_id_fraud_sdk.Message]) -> Swift.Bool where K : Swift.Hashable
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ListValue : Swift.ExpressibleByArrayLiteral {
+  public typealias Element = bureau_id_fraud_sdk.Google_Protobuf_Value
+  public init(arrayLiteral elements: bureau_id_fraud_sdk.Google_Protobuf_ListValue.Element...)
+  public typealias ArrayLiteralElement = bureau_id_fraud_sdk.Google_Protobuf_ListValue.Element
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_ListValue {
+  public init(values: [bureau_id_fraud_sdk.Google_Protobuf_Value])
+  public subscript(index: Swift.Int) -> bureau_id_fraud_sdk.Google_Protobuf_Value {
+    get
+    set(newValue)
+  }
+}
+public protocol SwiftProtobufContiguousBytes {
+  init(repeating: Swift.UInt8, count: Swift.Int)
+  init<S>(_ sequence: S) where S : Swift.Sequence, S.Element == Swift.UInt8
+  var count: Swift.Int { get }
+  func withUnsafeBytes<R>(_ body: (Swift.UnsafeRawBufferPointer) throws -> R) rethrows -> R
+  mutating func withUnsafeMutableBytes<R>(_ body: (Swift.UnsafeMutableRawBufferPointer) throws -> R) rethrows -> R
+}
+extension Swift.Array : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes where Element == Swift.UInt8 {
+}
+extension Foundation.Data : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes {
+}
+public struct Google_Protobuf_DoubleValue : Swift.Sendable {
+  public var value: Swift.Double
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_FloatValue : Swift.Sendable {
+  public var value: Swift.Float
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Int64Value : Swift.Sendable {
+  public var value: Swift.Int64
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_UInt64Value : Swift.Sendable {
+  public var value: Swift.UInt64
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Int32Value : Swift.Sendable {
+  public var value: Swift.Int32
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_UInt32Value : Swift.Sendable {
+  public var value: Swift.UInt32
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_BoolValue : Swift.Sendable {
+  public var value: Swift.Bool
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_StringValue : Swift.Sendable {
+  public var value: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_BytesValue : @unchecked Swift.Sendable {
+  public var value: Foundation.Data
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_DoubleValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_DoubleValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_DoubleValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FloatValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FloatValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_FloatValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Int64Value : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Int64Value, rhs: bureau_id_fraud_sdk.Google_Protobuf_Int64Value) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UInt64Value : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_UInt64Value, rhs: bureau_id_fraud_sdk.Google_Protobuf_UInt64Value) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Int32Value : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Int32Value, rhs: bureau_id_fraud_sdk.Google_Protobuf_Int32Value) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_UInt32Value : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_UInt32Value, rhs: bureau_id_fraud_sdk.Google_Protobuf_UInt32Value) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_BoolValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_BoolValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_BoolValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_StringValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_StringValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_StringValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_BytesValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_BytesValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_BytesValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct DeviceInfo {
+  public let vendorIdentifier: Foundation.UUID?
+  public let diskSpace: bureau_id_fraud_sdk.DiskSpaceInfo?
+  public let screenResolution: CoreFoundation.CGSize?
+  public let deviceType: Swift.String?
+  public let deviceModel: Swift.String?
+  public let memorySize: Swift.String?
+  public let physicalMemory: Swift.String?
+  public let cpuCount: Swift.String?
+  public let osVersion: Swift.String?
+  public let osType: Swift.String?
+  public let osRelease: Swift.String?
+  public let kernelVersion: Swift.String?
+  public let batteryCapacity: Swift.String?
+  public let batteryHealth: Swift.String?
+  public let isCharging: Swift.Bool?
+  public let ipv4: Swift.String?
+  public let ipv6: Swift.String?
+  public let isVpnConnected: Swift.String?
+  public let wifiMacAddress: Swift.String?
+  public let networkType: Swift.String?
+}
+public struct DiskSpaceInfo {
+  public let freeDiskSpace: Swift.UInt64
+  public let totalDiskSpace: Swift.UInt64
+}
+public struct Google_Protobuf_FieldMask : Swift.Sendable {
+  public var paths: [Swift.String]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_FieldMask : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_FieldMask, rhs: bureau_id_fraud_sdk.Google_Protobuf_FieldMask) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct BinaryEncodingOptions : Swift.Sendable {
+  public var useDeterministicOrdering: Swift.Bool
+  public init()
+}
+extension bureau_id_fraud_sdk.Message {
+  public func jsonString(options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Swift.String
+  public func jsonUTF8Bytes<Bytes>(options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Bytes where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+  public init(jsonString: Swift.String, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws
+  public init(jsonString: Swift.String, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws
+  public init<Bytes>(jsonUTF8Bytes: Bytes, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+  public init<Bytes>(jsonUTF8Bytes: Bytes, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+}
+public struct FingerprintTree {
+  public let info: bureau_id_fraud_sdk.DeviceInfoItem
+  public let children: [bureau_id_fraud_sdk.FingerprintTree]?
+  public var fingerprint: Swift.String {
+    get
+  }
+}
+public enum Google_Protobuf_Syntax : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case proto2
+  case proto3
+  case editions
+  case UNRECOGNIZED(Swift.Int)
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let allCases: [bureau_id_fraud_sdk.Google_Protobuf_Syntax]
+  public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_Syntax]
+}
+public struct Google_Protobuf_Type : Swift.Sendable {
+  public var name: Swift.String
+  public var fields: [bureau_id_fraud_sdk.Google_Protobuf_Field]
+  public var oneofs: [Swift.String]
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var sourceContext: bureau_id_fraud_sdk.Google_Protobuf_SourceContext {
+    get
+    set
+  }
+  public var hasSourceContext: Swift.Bool {
+    get
+  }
+  public mutating func clearSourceContext()
+  public var syntax: bureau_id_fraud_sdk.Google_Protobuf_Syntax
+  public var edition: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Field : Swift.Sendable {
+  public var kind: bureau_id_fraud_sdk.Google_Protobuf_Field.Kind
+  public var cardinality: bureau_id_fraud_sdk.Google_Protobuf_Field.Cardinality
+  public var number: Swift.Int32
+  public var name: Swift.String
+  public var typeURL: Swift.String
+  public var oneofIndex: Swift.Int32
+  public var packed: Swift.Bool
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var jsonName: Swift.String
+  public var defaultValue: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public enum Kind : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case typeUnknown
+    case typeDouble
+    case typeFloat
+    case typeInt64
+    case typeUint64
+    case typeInt32
+    case typeFixed64
+    case typeFixed32
+    case typeBool
+    case typeString
+    case typeGroup
+    case typeMessage
+    case typeBytes
+    case typeUint32
+    case typeEnum
+    case typeSfixed32
+    case typeSfixed64
+    case typeSint32
+    case typeSint64
+    case UNRECOGNIZED(Swift.Int)
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public static let allCases: [bureau_id_fraud_sdk.Google_Protobuf_Field.Kind]
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_Field.Kind]
+  }
+  public enum Cardinality : bureau_id_fraud_sdk.Enum, Swift.CaseIterable {
+    public typealias RawValue = Swift.Int
+    case unknown
+    case optional
+    case required
+    case repeated
+    case UNRECOGNIZED(Swift.Int)
+    public init()
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+    public static let allCases: [bureau_id_fraud_sdk.Google_Protobuf_Field.Cardinality]
+    public typealias AllCases = [bureau_id_fraud_sdk.Google_Protobuf_Field.Cardinality]
+  }
+  public init()
+}
+public struct Google_Protobuf_Enum : Swift.Sendable {
+  public var name: Swift.String
+  public var enumvalue: [bureau_id_fraud_sdk.Google_Protobuf_EnumValue]
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var sourceContext: bureau_id_fraud_sdk.Google_Protobuf_SourceContext {
+    get
+    set
+  }
+  public var hasSourceContext: Swift.Bool {
+    get
+  }
+  public mutating func clearSourceContext()
+  public var syntax: bureau_id_fraud_sdk.Google_Protobuf_Syntax
+  public var edition: Swift.String
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_EnumValue : Swift.Sendable {
+  public var name: Swift.String
+  public var number: Swift.Int32
+  public var options: [bureau_id_fraud_sdk.Google_Protobuf_Option]
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+public struct Google_Protobuf_Option : Swift.Sendable {
+  public var name: Swift.String
+  public var value: bureau_id_fraud_sdk.Google_Protobuf_Any {
+    get
+    set
+  }
+  public var hasValue: Swift.Bool {
+    get
+  }
+  public mutating func clearValue()
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Syntax : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Type : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Type, rhs: bureau_id_fraud_sdk.Google_Protobuf_Type) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Field : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Field, rhs: bureau_id_fraud_sdk.Google_Protobuf_Field) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Field.Kind : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Field.Cardinality : bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Enum : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Enum, rhs: bureau_id_fraud_sdk.Google_Protobuf_Enum) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_EnumValue : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValue, rhs: bureau_id_fraud_sdk.Google_Protobuf_EnumValue) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Option : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Option, rhs: bureau_id_fraud_sdk.Google_Protobuf_Option) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum DeviceInfoValueType {
+  case category
+  case info(Swift.String)
+}
+public struct DeviceInfoItem {
+  public let label: Swift.String
+  public let value: bureau_id_fraud_sdk.DeviceInfoValueType
+  public let children: [bureau_id_fraud_sdk.DeviceInfoItem]?
+}
+public struct SimpleExtensionMap : bureau_id_fraud_sdk.ExtensionMap, Swift.ExpressibleByArrayLiteral {
+  public typealias Element = bureau_id_fraud_sdk.AnyMessageExtension
+  public init()
+  public init(arrayLiteral: any bureau_id_fraud_sdk.AnyMessageExtension...)
+  public init(_ others: bureau_id_fraud_sdk.SimpleExtensionMap...)
+  public subscript(messageType: any bureau_id_fraud_sdk.Message.Type, fieldNumber: Swift.Int) -> (any bureau_id_fraud_sdk.AnyMessageExtension)? {
+    get
+  }
+  public func fieldNumberForProto(messageType: any bureau_id_fraud_sdk.Message.Type, protoFieldName: Swift.String) -> Swift.Int?
+  public mutating func insert(_ newValue: any bureau_id_fraud_sdk.AnyMessageExtension)
+  public mutating func insert(contentsOf: [any bureau_id_fraud_sdk.AnyMessageExtension])
+  public mutating func formUnion(_ other: bureau_id_fraud_sdk.SimpleExtensionMap)
+  public func union(_ other: bureau_id_fraud_sdk.SimpleExtensionMap) -> bureau_id_fraud_sdk.SimpleExtensionMap
+  public typealias ArrayLiteralElement = any bureau_id_fraud_sdk.AnyMessageExtension
+}
+extension bureau_id_fraud_sdk.Message {
+  public static func array(fromJSONUTF8Data jsonUTF8Data: Foundation.Data, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self]
+  public static func array(fromJSONUTF8Data jsonUTF8Data: Foundation.Data, extensions: any bureau_id_fraud_sdk.ExtensionMap = SimpleExtensionMap(), options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self]
+  public static func jsonUTF8Data<C>(from collection: C, options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Foundation.Data where Self == C.Element, C : Swift.Collection
+}
+extension CoreFoundation.CGSize : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum TextFormatDecodingError : Swift.Error {
+  case malformedText
+  case malformedNumber
+  case trailingGarbage
+  case truncated
+  case invalidUTF8
+  case schemaMismatch
+  case missingFieldNames
+  case unknownField
+  case unrecognizedEnumValue
+  case conflictingOneOf
+  case internalExtensionError
+  case messageDepthLimit
+  public static func == (a: bureau_id_fraud_sdk.TextFormatDecodingError, b: bureau_id_fraud_sdk.TextFormatDecodingError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@preconcurrency public protocol AnyMessageExtension : Swift.Sendable {
+  var fieldNumber: Swift.Int { get }
+  var fieldName: Swift.String { get }
+  var messageType: any bureau_id_fraud_sdk.Message.Type { get }
+  func _protobuf_newField<D>(decoder: inout D) throws -> (any bureau_id_fraud_sdk.AnyExtensionField)? where D : bureau_id_fraud_sdk.Decoder
+}
+final public class MessageExtension<FieldType, MessageType> : bureau_id_fraud_sdk.AnyMessageExtension where FieldType : bureau_id_fraud_sdk.ExtensionField, MessageType : bureau_id_fraud_sdk.Message {
+  final public let fieldNumber: Swift.Int
+  final public let fieldName: Swift.String
+  final public let messageType: any bureau_id_fraud_sdk.Message.Type
+  public init(_protobuf_fieldNumber: Swift.Int, fieldName: Swift.String)
+  final public func _protobuf_newField<D>(decoder: inout D) throws -> (any bureau_id_fraud_sdk.AnyExtensionField)? where D : bureau_id_fraud_sdk.Decoder
+  @objc deinit
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Timestamp {
+  public init(seconds: Swift.Int64 = 0, nanos: Swift.Int32 = 0)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Timestamp {
+  public init(timeIntervalSince1970: Foundation.TimeInterval)
+  public init(timeIntervalSinceReferenceDate: Foundation.TimeInterval)
+  public init(date: Foundation.Date)
+  public var timeIntervalSince1970: Foundation.TimeInterval {
+    get
+  }
+  public var timeIntervalSinceReferenceDate: Foundation.TimeInterval {
+    get
+  }
+  public var date: Foundation.Date {
+    get
+  }
+}
+public func + (lhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp, rhs: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> bureau_id_fraud_sdk.Google_Protobuf_Timestamp
+public func + (lhs: bureau_id_fraud_sdk.Google_Protobuf_Duration, rhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp) -> bureau_id_fraud_sdk.Google_Protobuf_Timestamp
+public func - (lhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp, rhs: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> bureau_id_fraud_sdk.Google_Protobuf_Timestamp
+@preconcurrency public protocol Message : Swift.Sendable {
+  init()
+  static var protoMessageName: Swift.String { get }
+  var isInitialized: Swift.Bool { get }
+  var unknownFields: bureau_id_fraud_sdk.UnknownStorage { get set }
+  mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  func hash(into hasher: inout Swift.Hasher)
+  func isEqualTo(message: any bureau_id_fraud_sdk.Message) -> Swift.Bool
+}
+public typealias _CommonMessageConformances = Swift.Sendable
+extension bureau_id_fraud_sdk.Message {
+  public var isInitialized: Swift.Bool {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func with(_ populator: (inout Self) throws -> ()) rethrows -> Self
+}
+@preconcurrency public protocol _MessageImplementationBase : Swift.Hashable, bureau_id_fraud_sdk.Message {
+  func _protobuf_generated_isEqualTo(other: Self) -> Swift.Bool
+}
+extension bureau_id_fraud_sdk._MessageImplementationBase {
+  public func isEqualTo(message: any bureau_id_fraud_sdk.Message) -> Swift.Bool
+  public static func == (lhs: Self, rhs: Self) -> Swift.Bool
+  public func _protobuf_generated_isEqualTo(other: Self) -> Swift.Bool
+}
+public struct TextFormatEncodingOptions : Swift.Sendable {
+  public var printUnknownFields: Swift.Bool
+  public init()
+}
+extension bureau_id_fraud_sdk.Message {
+  public init(jsonUTF8Data: Foundation.Data, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws
+  public init(jsonUTF8Data: Foundation.Data, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws
+  public func jsonUTF8Data(options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Foundation.Data
+}
+public struct BinaryDecodingOptions : Swift.Sendable {
+  public var messageDepthLimit: Swift.Int
+  public var discardUnknownFields: Swift.Bool
+  public init()
+}
+public struct Version {
+  public static let major: Swift.Int
+  public static let minor: Swift.Int
+  public static let revision: Swift.Int
+  public static let versionString: Swift.String
+}
+public struct JSONEncodingOptions : Swift.Sendable {
+  public var alwaysPrintInt64sAsNumbers: Swift.Bool
+  public var alwaysPrintEnumsAsInts: Swift.Bool
+  public var preserveProtoFieldNames: Swift.Bool
+  public var useDeterministicOrdering: Swift.Bool
+  public init()
+}
+public let defaultAnyTypeURLPrefix: Swift.String
+extension bureau_id_fraud_sdk.Google_Protobuf_Any {
+  public init(message: any bureau_id_fraud_sdk.Message, partial: Swift.Bool = false, typePrefix: Swift.String = defaultAnyTypeURLPrefix) throws
+  public init(textFormatString: Swift.String, options: bureau_id_fraud_sdk.TextFormatDecodingOptions = TextFormatDecodingOptions(), extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil) throws
+  public func isA<M>(_ type: M.Type) -> Swift.Bool where M : bureau_id_fraud_sdk.Message
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public protocol Decoder {
+  mutating func handleConflictingOneOf() throws
+  mutating func nextFieldNumber() throws -> Swift.Int?
+  mutating func decodeSingularFloatField(value: inout Swift.Float) throws
+  mutating func decodeSingularFloatField(value: inout Swift.Float?) throws
+  mutating func decodeRepeatedFloatField(value: inout [Swift.Float]) throws
+  mutating func decodeSingularDoubleField(value: inout Swift.Double) throws
+  mutating func decodeSingularDoubleField(value: inout Swift.Double?) throws
+  mutating func decodeRepeatedDoubleField(value: inout [Swift.Double]) throws
+  mutating func decodeSingularInt32Field(value: inout Swift.Int32) throws
+  mutating func decodeSingularInt32Field(value: inout Swift.Int32?) throws
+  mutating func decodeRepeatedInt32Field(value: inout [Swift.Int32]) throws
+  mutating func decodeSingularInt64Field(value: inout Swift.Int64) throws
+  mutating func decodeSingularInt64Field(value: inout Swift.Int64?) throws
+  mutating func decodeRepeatedInt64Field(value: inout [Swift.Int64]) throws
+  mutating func decodeSingularUInt32Field(value: inout Swift.UInt32) throws
+  mutating func decodeSingularUInt32Field(value: inout Swift.UInt32?) throws
+  mutating func decodeRepeatedUInt32Field(value: inout [Swift.UInt32]) throws
+  mutating func decodeSingularUInt64Field(value: inout Swift.UInt64) throws
+  mutating func decodeSingularUInt64Field(value: inout Swift.UInt64?) throws
+  mutating func decodeRepeatedUInt64Field(value: inout [Swift.UInt64]) throws
+  mutating func decodeSingularSInt32Field(value: inout Swift.Int32) throws
+  mutating func decodeSingularSInt32Field(value: inout Swift.Int32?) throws
+  mutating func decodeRepeatedSInt32Field(value: inout [Swift.Int32]) throws
+  mutating func decodeSingularSInt64Field(value: inout Swift.Int64) throws
+  mutating func decodeSingularSInt64Field(value: inout Swift.Int64?) throws
+  mutating func decodeRepeatedSInt64Field(value: inout [Swift.Int64]) throws
+  mutating func decodeSingularFixed32Field(value: inout Swift.UInt32) throws
+  mutating func decodeSingularFixed32Field(value: inout Swift.UInt32?) throws
+  mutating func decodeRepeatedFixed32Field(value: inout [Swift.UInt32]) throws
+  mutating func decodeSingularFixed64Field(value: inout Swift.UInt64) throws
+  mutating func decodeSingularFixed64Field(value: inout Swift.UInt64?) throws
+  mutating func decodeRepeatedFixed64Field(value: inout [Swift.UInt64]) throws
+  mutating func decodeSingularSFixed32Field(value: inout Swift.Int32) throws
+  mutating func decodeSingularSFixed32Field(value: inout Swift.Int32?) throws
+  mutating func decodeRepeatedSFixed32Field(value: inout [Swift.Int32]) throws
+  mutating func decodeSingularSFixed64Field(value: inout Swift.Int64) throws
+  mutating func decodeSingularSFixed64Field(value: inout Swift.Int64?) throws
+  mutating func decodeRepeatedSFixed64Field(value: inout [Swift.Int64]) throws
+  mutating func decodeSingularBoolField(value: inout Swift.Bool) throws
+  mutating func decodeSingularBoolField(value: inout Swift.Bool?) throws
+  mutating func decodeRepeatedBoolField(value: inout [Swift.Bool]) throws
+  mutating func decodeSingularStringField(value: inout Swift.String) throws
+  mutating func decodeSingularStringField(value: inout Swift.String?) throws
+  mutating func decodeRepeatedStringField(value: inout [Swift.String]) throws
+  mutating func decodeSingularBytesField(value: inout Foundation.Data) throws
+  mutating func decodeSingularBytesField(value: inout Foundation.Data?) throws
+  mutating func decodeRepeatedBytesField(value: inout [Foundation.Data]) throws
+  mutating func decodeSingularEnumField<E>(value: inout E) throws where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int
+  mutating func decodeSingularEnumField<E>(value: inout E?) throws where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int
+  mutating func decodeRepeatedEnumField<E>(value: inout [E]) throws where E : bureau_id_fraud_sdk.Enum, E.RawValue == Swift.Int
+  mutating func decodeSingularMessageField<M>(value: inout M?) throws where M : bureau_id_fraud_sdk.Message
+  mutating func decodeRepeatedMessageField<M>(value: inout [M]) throws where M : bureau_id_fraud_sdk.Message
+  mutating func decodeSingularGroupField<G>(value: inout G?) throws where G : bureau_id_fraud_sdk.Message
+  mutating func decodeRepeatedGroupField<G>(value: inout [G]) throws where G : bureau_id_fraud_sdk.Message
+  mutating func decodeMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.Type, value: inout bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.BaseType) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.MapValueType
+  mutating func decodeMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.Type, value: inout bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.BaseType) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.Enum, ValueType.RawValue == Swift.Int
+  mutating func decodeMapField<KeyType, ValueType>(fieldType: bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.Type, value: inout bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.BaseType) throws where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : Swift.Hashable, ValueType : bureau_id_fraud_sdk.Message
+  mutating func decodeExtensionField(values: inout bureau_id_fraud_sdk.ExtensionFieldValueSet, messageType: any bureau_id_fraud_sdk.Message.Type, fieldNumber: Swift.Int) throws
+  mutating func decodeExtensionFieldsAsMessageSet(values: inout bureau_id_fraud_sdk.ExtensionFieldValueSet, messageType: any bureau_id_fraud_sdk.Message.Type) throws
+}
+extension bureau_id_fraud_sdk.Decoder {
+  public mutating func decodeExtensionFieldsAsMessageSet(values: inout bureau_id_fraud_sdk.ExtensionFieldValueSet, messageType: any bureau_id_fraud_sdk.Message.Type) throws
+}
+extension bureau_id_fraud_sdk.Message {
+  public static func jsonString<C>(from collection: C, options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Swift.String where Self == C.Element, C : Swift.Collection
+  public static func jsonUTF8Bytes<C, Bytes>(from collection: C, options: bureau_id_fraud_sdk.JSONEncodingOptions = JSONEncodingOptions()) throws -> Bytes where Self == C.Element, C : Swift.Collection, Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+  public static func array(fromJSONString jsonString: Swift.String, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self]
+  public static func array(fromJSONString jsonString: Swift.String, extensions: any bureau_id_fraud_sdk.ExtensionMap = SimpleExtensionMap(), options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self]
+  public static func array<Bytes>(fromJSONUTF8Bytes jsonUTF8Bytes: Bytes, options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self] where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+  public static func array<Bytes>(fromJSONUTF8Bytes jsonUTF8Bytes: Bytes, extensions: any bureau_id_fraud_sdk.ExtensionMap = SimpleExtensionMap(), options: bureau_id_fraud_sdk.JSONDecodingOptions = JSONDecodingOptions()) throws -> [Self] where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+}
+@preconcurrency public protocol ExtensionMap : Swift.Sendable {
+  subscript(messageType: any bureau_id_fraud_sdk.Message.Type, fieldNumber: Swift.Int) -> (any bureau_id_fraud_sdk.AnyMessageExtension)? { get }
+  func fieldNumberForProto(messageType: any bureau_id_fraud_sdk.Message.Type, protoFieldName: Swift.String) -> Swift.Int?
+}
+public struct _ProtobufMap<KeyType, ValueType> where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.FieldType {
+  public typealias Key = KeyType.BaseType
+  public typealias Value = ValueType.BaseType
+  public typealias BaseType = Swift.Dictionary<bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.Key, bureau_id_fraud_sdk._ProtobufMap<KeyType, ValueType>.Value>
+}
+public struct _ProtobufMessageMap<KeyType, ValueType> where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : Swift.Hashable, ValueType : bureau_id_fraud_sdk.Message {
+  public typealias Key = KeyType.BaseType
+  public typealias Value = ValueType
+  public typealias BaseType = Swift.Dictionary<bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.Key, bureau_id_fraud_sdk._ProtobufMessageMap<KeyType, ValueType>.Value>
+}
+public struct _ProtobufEnumMap<KeyType, ValueType> where KeyType : bureau_id_fraud_sdk.MapKeyType, ValueType : bureau_id_fraud_sdk.Enum {
+  public typealias Key = KeyType.BaseType
+  public typealias Value = ValueType
+  public typealias BaseType = Swift.Dictionary<bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.Key, bureau_id_fraud_sdk._ProtobufEnumMap<KeyType, ValueType>.Value>
+}
+public struct Google_Protobuf_Timestamp : Swift.Sendable {
+  public var seconds: Swift.Int64
+  public var nanos: Swift.Int32
+  public var unknownFields: bureau_id_fraud_sdk.UnknownStorage
+  public init()
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Timestamp : bureau_id_fraud_sdk.Message, bureau_id_fraud_sdk._MessageImplementationBase, bureau_id_fraud_sdk._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: bureau_id_fraud_sdk._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : bureau_id_fraud_sdk.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : bureau_id_fraud_sdk.Visitor
+  public static func == (lhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp, rhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension bureau_id_fraud_sdk.Message {
+  public func serializedBytes<Bytes>(partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryEncodingOptions = BinaryEncodingOptions()) throws -> Bytes where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes
+  @inlinable public init<Bytes>(serializedBytes bytes: Bytes, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes {
+    self.init()
+    try merge(serializedBytes: bytes, extensions: extensions, partial: partial, options: options)
+  }
+  @inlinable public mutating func merge<Bytes>(serializedBytes bytes: Bytes, extensions: (any bureau_id_fraud_sdk.ExtensionMap)? = nil, partial: Swift.Bool = false, options: bureau_id_fraud_sdk.BinaryDecodingOptions = BinaryDecodingOptions()) throws where Bytes : bureau_id_fraud_sdk.SwiftProtobufContiguousBytes {
+    try bytes.withUnsafeBytes { (body: UnsafeRawBufferPointer) in
+      try _merge(rawBuffer: body, extensions: extensions, partial: partial, options: options)
+    }
+  }
+  @usableFromInline
+  internal mutating func _merge(rawBuffer body: Swift.UnsafeRawBufferPointer, extensions: (any bureau_id_fraud_sdk.ExtensionMap)?, partial: Swift.Bool, options: bureau_id_fraud_sdk.BinaryDecodingOptions) throws
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Duration {
+  public init(seconds: Swift.Int64 = 0, nanos: Swift.Int32 = 0)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Duration : Swift.ExpressibleByFloatLiteral {
+  public typealias FloatLiteralType = Swift.Double
+  public init(floatLiteral value: Swift.Double)
+}
+extension bureau_id_fraud_sdk.Google_Protobuf_Duration {
+  public init(timeInterval: Foundation.TimeInterval)
+  public var timeInterval: Foundation.TimeInterval {
+    get
+  }
+}
+prefix public func - (operand: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> bureau_id_fraud_sdk.Google_Protobuf_Duration
+public func + (lhs: bureau_id_fraud_sdk.Google_Protobuf_Duration, rhs: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> bureau_id_fraud_sdk.Google_Protobuf_Duration
+public func - (lhs: bureau_id_fraud_sdk.Google_Protobuf_Duration, rhs: bureau_id_fraud_sdk.Google_Protobuf_Duration) -> bureau_id_fraud_sdk.Google_Protobuf_Duration
+public func - (lhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp, rhs: bureau_id_fraud_sdk.Google_Protobuf_Timestamp) -> bureau_id_fraud_sdk.Google_Protobuf_Duration
+extension bureau_id_fraud_sdk.Mode : Swift.Equatable {}
+extension bureau_id_fraud_sdk.Mode : Swift.Hashable {}
+extension bureau_id_fraud_sdk.FingerprintJSVersion : Swift.Equatable {}
+extension bureau_id_fraud_sdk.FingerprintJSVersion : Swift.Hashable {}
+extension bureau_id_fraud_sdk.FingerprintAlgorithm : Swift.Equatable {}
+extension bureau_id_fraud_sdk.FingerprintAlgorithm : Swift.Hashable {}
+extension bureau_id_fraud_sdk.BinaryDelimited.Error : Swift.Equatable {}
+extension bureau_id_fraud_sdk.BinaryDelimited.Error : Swift.Hashable {}
+extension bureau_id_fraud_sdk.AnyUnpackError : Swift.Equatable {}
+extension bureau_id_fraud_sdk.AnyUnpackError : Swift.Hashable {}
+extension bureau_id_fraud_sdk.BinaryDecodingError : Swift.Equatable {}
+extension bureau_id_fraud_sdk.BinaryDecodingError : Swift.Hashable {}
+extension bureau_id_fraud_sdk.TextFormatDecodingError : Swift.Equatable {}
+extension bureau_id_fraud_sdk.TextFormatDecodingError : Swift.Hashable {}
