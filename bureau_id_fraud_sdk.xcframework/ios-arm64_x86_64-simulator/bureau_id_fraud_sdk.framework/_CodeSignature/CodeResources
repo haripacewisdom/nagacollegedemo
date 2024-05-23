@@ -10,55 +10,59 @@
 		</data>
 		<key>Headers/bureau_id_fraud_sdk-Swift.h</key>
 		<data>
-		XTA+c8Zkyp32p27pnB7Q8cI3VCQ=
+		o7lS1lvyeBmfO0Ca7oeV98M5UrY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		riuFbmTzcsan9DOW0XglpjFX6Pw=
+		teOfWXZZoydw4pwWETg35ug839g=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		yeNP30V8ZZx6luXYaMNMtw/cHys=
+		eBEsuXx2VEJZcne6wBLfDY/egkg=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		S/0KWobKvU4GOcz/5gMQQWH+aao=
+		eECg+/+M49HnLUeZkh3MtiwHJiY=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		dUpbtmZOlvNDLdpL64PTVvsB85A=
+		skAIBSeljaRVMGHaqhWhMMGH+p4=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		S/0KWobKvU4GOcz/5gMQQWH+aao=
+		eECg+/+M49HnLUeZkh3MtiwHJiY=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		nG0WFY77Fe3a0LtgqrXzEWc7bxw=
+		aALyIrkLTdl5LCGxfnpVahpmjvQ=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		yeNP30V8ZZx6luXYaMNMtw/cHys=
+		eBEsuXx2VEJZcne6wBLfDY/egkg=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		ZW0hHdpi9ydPCQkLG0FKLAYT3lM=
+		YSTL/G15rBiz0JQc4GB0rTeBhJE=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		IGZns8hsqejXdNLtLWt4DlUPzvo=
+		wcAvIjeSLTzoJgxGv/rDnJrl6WY=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		ZW0hHdpi9ydPCQkLG0FKLAYT3lM=
+		YSTL/G15rBiz0JQc4GB0rTeBhJE=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		w2J6ICo5R5lFMGou/DOsluNqh+0=
+		xS+Icr/FNbQaqIWD9xIhIh3ftug=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		3goDnNgQ/Zloy/FKN27hChYSN8E=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		1P2fGR7sR7KjfFCHZhRbKNMwHBE=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -74,77 +78,77 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+YmTQhVLF04ovG8C/NXxQAE039YfzDPZeGSmf/bhgII=
+			Lihaqw1ufLFXsPoiXD5p64/PDgmeSJSfu0u3NtQQbQU=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wI7O/bgQpwQ1CUCDOdF08hvnqwxGG9z0Xk+9zX2s0i0=
+			demxzIcer5SHJ8eukzOrRMLEVYvMOsp9tbwsKyCW4X0=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hD7B0sAPgBDwNSyUtz+5ANbFQyS+kYWJcdA7fBMLHlU=
+			IXuGaC+85ElVjUrKDqyF/JkQX5eiztkC1sMOR4CvGq0=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uB80BgW2IdxMck73zQKwNyfeyZWmrCkgN08VLFs5gLQ=
+			zr1hDvHTKIJzLQhOGYnlBSakAM6+tWWt9RlYUpFFSc0=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hD7B0sAPgBDwNSyUtz+5ANbFQyS+kYWJcdA7fBMLHlU=
+			IXuGaC+85ElVjUrKDqyF/JkQX5eiztkC1sMOR4CvGq0=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2hYSlBNDTRd7ZU89AT3oApHUlqdH8FnMDGs36bILJJ0=
+			hiLFBqU0agmv7un23x4E9lf0f3xrria1BFePmtDbITA=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wI7O/bgQpwQ1CUCDOdF08hvnqwxGG9z0Xk+9zX2s0i0=
+			demxzIcer5SHJ8eukzOrRMLEVYvMOsp9tbwsKyCW4X0=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jVfEpcnlkXWT5t+yqA+3Ic2G/5Eg0Ta2QqPPjkier7o=
+			GF4RYjra/HEDIpxm5mnpHmv3lO0P9fR9hoRZ3y5JAfE=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pSivQQdWdq6qWlBWjun2Xld2dXF5dGG3IC3c/l5OoJU=
+			YYM927Pom0UM7Ji8dwekxw44zqn40v63lMkwM4rXMTI=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jVfEpcnlkXWT5t+yqA+3Ic2G/5Eg0Ta2QqPPjkier7o=
+			GF4RYjra/HEDIpxm5mnpHmv3lO0P9fR9hoRZ3y5JAfE=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oO6c4mlLzfG6+Pbonng5/SAITsweJir3JHs87dNLDs0=
+			0Bmr+it+Ai95037X52ZcBN+MMQ+djES99GKHBA8NpAY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -152,6 +156,13 @@
 			<key>hash2</key>
 			<data>
 			9hx/eE7iP60deGJenV53ywAEELqhrzH2oja+om5MVic=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hC0x5WNfgUcyLWNO0YynJp8WP4GA8UJ3jzsP9pXfTJ0=
 			</data>
 		</dict>
 	</dict>
