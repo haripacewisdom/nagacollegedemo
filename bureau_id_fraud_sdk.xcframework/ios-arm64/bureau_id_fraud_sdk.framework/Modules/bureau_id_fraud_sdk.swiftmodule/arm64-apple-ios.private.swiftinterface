@@ -20,7 +20,6 @@ import MessageUI
 import Network
 import Sentry
 import Swift
-import SwiftProtobuf
 import SwiftUI
 import SystemConfiguration
 import UIKit
