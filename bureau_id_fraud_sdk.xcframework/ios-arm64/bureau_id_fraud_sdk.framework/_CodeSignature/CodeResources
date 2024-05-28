@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		C/2QfpNlzasMeM7jF27xCleKx34=
+		3P8dPX1GpkqzNZzQ8VwR4Ru0Isw=
 		</data>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -49,10 +49,6 @@
 	<dict>
 		<key>Headers/bureau-id-fraud-sdk.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			E/6aIdVlXDigWix3VkFL02HKOuU=
-			</data>
 			<key>hash2</key>
 			<data>
 			j0p96ZLmso1bbIzeK/5ZRx6sKemf/e3Tf3DXrCwpiU8=
@@ -60,10 +56,6 @@
 		</dict>
 		<key>Headers/bureau_id_fraud_sdk-Swift.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			h5rvvCvWw2Cc12OH3am9Nm5mPGQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			J27baviCPukxRRqozeu2UNF8+JSr0I3VgtLLDmN874w=
@@ -71,21 +63,13 @@
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			C/2QfpNlzasMeM7jF27xCleKx34=
-			</data>
 			<key>hash2</key>
 			<data>
-			J6DYGJ7EkrY+X9Oc3W/KKE828RRNuyNCRIry7cFDU/g=
+			Z2UTPkD4+J3Mlb2hVtsECuNVzn1TJ7YxW784bvtp3Yg=
 			</data>
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RGWKofEVtaTTIm2ybkVcUezMjQo=
-			</data>
 			<key>hash2</key>
 			<data>
 			fsEh7fOXPdx5qOfubwqoAn4wsW71HUIrPOKfmEaBZxw=
@@ -93,10 +77,6 @@
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			LueGzBOuFpKLQXxUUhNMTeil7iU=
-			</data>
 			<key>hash2</key>
 			<data>
 			QkW6EyLH6uaTfutr7ABHIIPxhCa0bsjgZaJfkuHuc58=
@@ -104,10 +84,6 @@
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RGWKofEVtaTTIm2ybkVcUezMjQo=
-			</data>
 			<key>hash2</key>
 			<data>
 			fsEh7fOXPdx5qOfubwqoAn4wsW71HUIrPOKfmEaBZxw=
@@ -115,10 +91,6 @@
 		</dict>
 		<key>Modules/bureau_id_fraud_sdk.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			TUEJR35OWhNuRdcgHnYipw5tljo=
-			</data>
 			<key>hash2</key>
 			<data>
 			mIoK8Yxgqd3utXCNOfWRzJqnWIu6flPrbwMQS5/uq2Q=
@@ -126,10 +98,6 @@
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3goDnNgQ/Zloy/FKN27hChYSN8E=
-			</data>
 			<key>hash2</key>
 			<data>
 			9hx/eE7iP60deGJenV53ywAEELqhrzH2oja+om5MVic=
@@ -137,10 +105,6 @@
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			1P2fGR7sR7KjfFCHZhRbKNMwHBE=
-			</data>
 			<key>hash2</key>
 			<data>
 			hC0x5WNfgUcyLWNO0YynJp8WP4GA8UJ3jzsP9pXfTJ0=
