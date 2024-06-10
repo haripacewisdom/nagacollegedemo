@@ -325,6 +325,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) BureauAPI * 
 
 
 
+
 @class NSCoder;
 @class UIScrollView;
 @class NSString;
@@ -692,6 +693,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) BureauAPI * 
 - (void)locationManager:(CLLocationManager * _Nonnull)manager didUpdateLocations:(NSArray<CLLocation *> * _Nonnull)locations;
 - (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 @end
+
 
 
 

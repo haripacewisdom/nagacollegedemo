@@ -18,9 +18,7 @@ import LocalAuthentication
 import MachO
 import MessageUI
 import Network
-import Sentry
 import Swift
-import SwiftProtobuf
 import SwiftUI
 import SystemConfiguration
 import UIKit
@@ -91,6 +89,12 @@ extension bureau_id_fraud_sdk.LocalSignalDelegate {
   public func device(isJailBreak: Swift.Bool)
   public func appDebugMode(enable: Swift.Bool)
   public func isVPNEnable(enable: Swift.Bool)
+}
+extension bureau_id_fraud_sdk.BureauAPI {
+  public func localRiskSignalMonitoring(enable: Swift.Bool, interval: Foundation.TimeInterval = 5)
+  public func stopRiskSignalMonitoringImmediately()
+  public func setLocalRiskSignalMonitoringFrequesncy(interval: Foundation.TimeInterval = 5)
+  public func setLocalRiskSignalMonitoringFrequesncy(sec: Foundation.TimeInterval)
 }
 @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class UserBehaviourCapture : UIKit.UIViewController, UIKit.UIScrollViewDelegate {
   @_Concurrency.MainActor(unsafe) public var prismBehaviouralDelegate: (any bureau_id_fraud_sdk.PrismBehaviouralDelegate)?
