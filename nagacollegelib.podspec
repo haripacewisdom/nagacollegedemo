@@ -15,4 +15,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'SwiftProtobuf', '1.26.0'
   spec.swift_version = '5.0'
 
+
 end
