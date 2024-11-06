@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'nagacollegelib'
-  spec.version          = '2.1.6'
+  spec.version          = '2.1.7'
   spec.homepage         = 'https://www.bureau.id/products/bureau-device-intelligence-behaviorial-biometrics'
   spec.authors          = { 'hariharaprabu.m' => 'hariharaprabu.m@pacewisdom.com' }
   spec.summary          = 'nagacollegelib from WAIOZ'
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
 
   spec.vendored_frameworks = '*.xcframework'
 
-  spec.dependency 'Sentry', '8.23.0'
+  spec.dependency 'Sentry', '8.36.0'
   spec.dependency 'SwiftProtobuf', '1.26.0'
   spec.swift_version = '5.0'
 
